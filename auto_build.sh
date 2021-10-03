@@ -1,7 +1,7 @@
 ###
  # @Author: your name
  # @Date: 2021-10-03 16:16:54
- # @LastEditTime: 2021-10-03 16:18:59
+ # @LastEditTime: 2021-10-03 16:53:06
  # @LastEditors: Please set LastEditors
  # @Description: In User Settings Edit
  # @FilePath: \dubbo-goe:\code\study\auto_build.sh
@@ -14,7 +14,7 @@ echo "* files *"
 ls -l
 sid=$(pidof my_http)
 echo  $sid
-if [ !$sid  ]
+if [ $sid  ]
 then
   sudo kill -9 $sid
 fi
