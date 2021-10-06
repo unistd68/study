@@ -7,14 +7,29 @@
  * @FilePath: \dubbo-goe:\code\study\main.cpp
  */
 #include "HttpServer.hpp"
-
-#include <stdlib.h>
-#include <string.h>
-#include <iostream>
+#include "UseRedis.h"
+#include "headers.h"
+#include "ErrorNO.h"
+#include "ConfigParse.h"
 
 using namespace std;
 
-int main(int argc, char *argv[])
+void commandHelp()
+{
+
+}
+
+int initConfig()
+{
+	Ini ini("serv.ini");
+	string host = ini.get("epoll_server","host");
+	string port = ini.get("epoll_server","port");
+	cout<<"host:"<<host<<endl;
+	cout<<"port:"<<port<<endl;
+
+}
+
+void initServ(int argc, char *argv[])
 {
 	unsigned short port = 8888;
 	if (argc > 3)
@@ -44,5 +59,17 @@ int main(int argc, char *argv[])
 	
 	server->start_serving();
 	delete server;
+}
+
+void test(int argc, char *argv[])
+{
+	redis_def::test();
+
+}
+
+int main(int argc, char *argv[])
+{
+	//test(argc,**argv);
+	initConfig();
 	return 0;
 }

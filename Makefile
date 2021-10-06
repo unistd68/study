@@ -1,7 +1,7 @@
 CC = g++
-CC_FLAGS = -W -Wall -Werror -I./
-EXEC = my_http
-OBJS = main.o httpserver.o httpresponse.o
+CC_FLAGS = -W -Wall -Werror -I./ -I/home/xtcgch/Env/redis/redis-6.2.5/deps/hiredis -L/home/xtcgch/Env/redis/redis-6.2.5/deps/hiredis/build_dir/libhiredis.so.1.0.0
+EXEC = my_service
+OBJS = main.o httpserver.o httpresponse.o useredis.o configparse.o
 
 CC_FLAGS += -std=c++11
 
@@ -16,6 +16,12 @@ httpserver.o: HttpServer.cpp HttpServer.hpp
 	
 httpresponse.o: HttpResponse.cpp HttpResponse.hpp
 	$(CC) $(CC_FLAGS) -c -o $@ HttpResponse.cpp
+
+useredis.o: UseRedis.cpp UseRedis.h
+	$(CC) $(CC_FLAGS) -c -o $@ UseRedis.cpp
+
+configparse.o: ConfigParse.cpp ConfigParse.h
+	$(CC) $(CC_FLAGS) -c -o $@ ConfigParse.cpp
 
 all: $(EXEC)
 

@@ -27,3 +27,4 @@ sudo /bin/cp -f my_http /home/xtcgch/MyService/my_http
 (nohup /home/xtcgch/MyService/my_http &)
 echo "### build finished ! ###"
 ps -ef | grep my_http
+valgrind --leak-check=full --show-reachable=yes --trace-children=yes --log-file=test.log --time-stamp=yes ./my_service 
