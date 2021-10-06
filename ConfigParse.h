@@ -12,16 +12,16 @@ public:
     ~Ini();
     Ini() = delete;
     Ini(Ini &ini) = delete;
-    string get(string path);
-    string get(const char *parent,const char* child);
+    std::string get(std::string path);
+    std::string get(const char *parent,const char* child);
 private:
     int _readAll(const char *configfile);
-    int _getSection(const string &section,
+    int _getSection(const std::string &section,
                     std::vector<std::pair<std::string, std::string>> &results);
     int errCode();
 
 private:
-    int _open(const string ini_file);
+    int _open(const std::string ini_file);
 
 private:
     int err_code;
