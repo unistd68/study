@@ -18,7 +18,7 @@ extern "C"
 
 
 
-int testRedis() 
+int redis_def::testRedis() 
     {
         redisContext* redis = redisConnect("127.0.0.1", 6379);// 用来连接redis数据库，参数为数据库的ip地址和端口，一般redis数据库的端口为6379。类似的函数有redisContext* redisConnectWithTimeout(const char *ip, int port, timeval tv) 
         if( redis == NULL || redis->err ) //当 redis->err 为真时，redis->errstr 显示具体的错误原因
