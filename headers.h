@@ -28,11 +28,11 @@
 
 
 
-#ifdef _USE_REDIS_
+// #ifdef _USE_REDIS_
 #include "hiredis.h"
 #include "hiredis_ssl.h"
 #include "hiredis/hiredis.h" 
-#endif
+// #endif
 
 
 #include "ErrorNO.h"
