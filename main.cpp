@@ -61,7 +61,7 @@ void initServ(int argc, char *argv[])
 	delete server;
 }
 
-void test(int argc, char *argv[])
+void test()
 {
 	redis_def::test();
 
@@ -69,7 +69,6 @@ void test(int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
-	//test(argc,**argv);
 	initConfig();
 	return 0;
 }
