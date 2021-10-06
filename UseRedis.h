@@ -50,13 +50,13 @@ namespace redis_def
             std::cout << redis->errstr << '\n';
         }
         const char * command = "set test yes";
-        redisReply * reply = (redisReply*) redisCommand(redis, command); // 返回值为void*，强制转换成为redisReply类型
+        redisReply * reply = (redisReply*)redisCommand(redis, command); // 返回值为void*，强制转换成为redisReply类型
         if(reply == NULL)
         {
             std::cout << "error" << '\n';
             redisFree(redis);
         }
-        if(reply->type == REDIS_REPLY_STATUS)　// REDIS_REPLY_STATUS 返回状态，可以用 strcasecmp(reply->str,"OK") 判断是否正确执行
+        if(reply->type == REDIS_REPLY_STATUS)// REDIS_REPLY_STATUS 返回状态，可以用 strcasecmp(reply->str,"OK") 判断是否正确执行
         {
             std::cout << "redis reply is : " << reply->str << '\n';
         }

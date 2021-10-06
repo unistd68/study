@@ -1,5 +1,5 @@
 CC = g++
-CC_FLAGS = -W -Wall -Werror -I./ -I/home/xtcgch/Env/redis/redis-6.2.5/deps/hiredis -L/home/xtcgch/Env/redis/redis-6.2.5/deps/hiredis/build_dir/libhiredis.so.1.0.0
+CC_FLAGS = -W -Wall -Werror -I./  -I/home/xtcgch/Env/redis/redis-6.2.5/deps -L/home/xtcgch/Env/redis/redis-6.2.5/deps/hiredis/build_dir -lhiredis
 EXEC = my_service
 OBJS = main.o httpserver.o httpresponse.o useredis.o configparse.o
 
