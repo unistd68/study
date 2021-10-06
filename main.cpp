@@ -21,19 +21,36 @@ void commandHelp()
 
 }
 
-int initConfig()
+int initConfig(const char* file,StSConfig& stSConfig)
 {
-	Ini ini("serv.ini");
-	std::string host = ini.get("epoll_server","host");
-	std::string port = ini.get("epoll_server","port");
-	std::cout<<"host:"<<host<<std::endl;
-	std::cout<<"port:"<<port<<std::endl;
+	Ini ini(file);
+	ini.displayConfigs();
+	stConfig._mConfigs = ini.getConfigs();
+	// std::string host = ini.get("epoll_server","host");
+	// std::string port = ini.get("epoll_server","port");
+	// std::cout<<"host:"<<host<<std::endl;
+	// std::cout<<"port:"<<port<<std::endl;
+	for(auto& key : stSConfig._vKeyNames)
+	{
+		std::string strValue = ini.get(stSConfig._strSection,*key.c_str());
+		stSConfig._mConfigs.empplace(std::make_pair(*key.c_str(),strValue.c_str()));
+	}
+	std::cout<<"stConfig._mConfigs size:"<<stConfig._mConfigs.size()<<std::endl;
 	return OK;
 }
 
-int initServ(int argc, char *argv[])
+int initTCPServ(int argc, char *argv[])
 {
-	unsigned short port = 8888;
+	STConfig& stConfig;
+	stConfig._strSection = CONST_CONFIG_EPOLL;
+	stConfig._vKeyNames.emplace_back(CONST_CONFIG_HOST);
+	stConfig._vKeyNames.emplace_back(CONST_CONFIG_PORT);
+	if(initConfig("serv.ini",stConfig) != OK)
+	{
+		std::cout<<"initConfig fail" << std::endl;
+		return file_io_errorno::FERROR_OPENFAIL;
+	}
+	unsigned short port = std::atoi(stConfig._mConfigs[CONST_CONFIG_PORT]);
 	if (argc > 3)
 	{
 		std::cerr << "At most two arguments." << std::endl;
@@ -72,6 +89,6 @@ void test()
 
 int main()
 {
-	initConfig();
+	initTCPServ();
 	return 0;
 }

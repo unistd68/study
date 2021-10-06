@@ -4,6 +4,17 @@
 
 #include "headers.h"
 
+const std::string CONST_CONFIG_EPOLL = "epoll_server";
+const std::string CONST_CONFIG_HOST = "host";
+const std::string CONST_CONFIG_PORT = "port";
+
+typedef struct ST_SECTION_CONFIG
+{
+    std::string _strSection;
+    std::vector<std::string> _vKeyNames;
+    std::map<std::string, std::string> _mConfigs;
+}StSConfig;
+
 class Ini
 {
 public:
@@ -12,15 +23,18 @@ public:
     ~Ini();
     Ini() = delete;
     Ini(Ini &ini) = delete;
+
+public:
     std::string get(std::string path);
     std::string get(const char *parent,const char* child);
+    void displayConfigs();
+    int getConfigs(std::map<std::string, std::map<std::string, std::string>>& configs);
+    int errCode();
+
 private:
     int _readAll(const char *configfile);
     int _getSection(const std::string &section,
                     std::vector<std::pair<std::string, std::string>> &results);
-    int errCode();
-
-private:
     int _open(const std::string ini_file);
 
 private:
