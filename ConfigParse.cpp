@@ -96,7 +96,7 @@ int Ini::_readAll(const char *configfile)
         std::map<std::string, std::map<std::string, std::string>> m_map4AllItems;
         BOOST_FOREACH(auto &key , results)
         {
-            std::cout<<"BOOST_FOREACH ,key:"<<key.first<<",value:"<<key.value<<std::endl;
+            std::cout<<"BOOST_FOREACH ,key:"<<key.first<<",value:"<<key.second<<std::endl;
             mapSection.emplace(key);
         }
         //m_map4AllItems.emplace(std::make_pair<std::string, std::map<std::string, std::string>>(*itSectionName, mapSection));
