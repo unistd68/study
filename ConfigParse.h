@@ -17,8 +17,7 @@ public:
 private:
     int _readAll(const char *configfile);
     int _getSection(const string &section,
-                    std::vector<std::pair<std::string, std::string>> &results,
-                    const char *configfile = nullptr);
+                    std::vector<std::pair<std::string, std::string>> &results);
     int errCode();
 
 private:

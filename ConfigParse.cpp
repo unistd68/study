@@ -50,7 +50,7 @@ int Ini::_open(const string ini_file)
     this->err_code = file_io_errorno::FERROR_OK;
 }
 
-Ini::errCode()
+int Ini::errCode()
 {
     return this->err_code;
 }
@@ -70,7 +70,7 @@ string Ini::get(string path)
 int Ini::_readAll(const char *configfile)
 {
     std::vector<std::string> vSectionNameLists;
-    foreach (auto &section, m_pt)
+    std::foreach (auto &section in m_pt)
     {
         std::string strSectionName = section.first;
         vSectionNameLists.emplace_back(strSectionName);
@@ -82,12 +82,12 @@ int Ini::_readAll(const char *configfile)
         std::map<std::string, std::string> mapSection;
         std::vector<std::pair<std::string, std::string>> results;
 
-        if (_getSection(itSectionName, results, configfile) != 0)
+        if (_getSection(*itSectionName, results, configfile) != 0)
         {
             return file_io_errorno::FERROR_GETSECTIONFAIL;
         }
 
-        foreach (auto &key, results)
+        std::foreach (auto &key in results)
         {
             mapSection.emplace(key);
         }
@@ -98,19 +98,14 @@ int Ini::_readAll(const char *configfile)
 }
 
 int Ini::_getSection(const string &section,
-                     std::vector<std::pair<std::string, std::string>> &results,
-                     const char *configfile = nullptr)
+                     std::vector<std::pair<std::string, std::string>> &results)
 {
-    if (configfile != nullptr && open(configfile) != 0)
-    {
-        return file_io_errorno::FERROR_OPENFAIL;
-    }
 
     try
     {
         auto lvbtItems = this->m_pt.get_child(section.c_str());
 
-        foreach (auto &i, lvbtItems)
+        std::foreach (auto &i in lvbtItems)
         {
             results.push_back(std::make_pair(i.first.data(), i.second.data()));
         }
@@ -126,7 +121,7 @@ int Ini::_getSection(const string &section,
 
 string Ini::get(const char *parent,const char* child)
 {
-    if (this->err_code == file_io_errorno::OK)
+    if (this->err_code == file_io_errorno::FERROR_OK)
     {
         auto _retParent = m_map4AllItems.find(parent);
         if(_retParent == m_map4AllItems.end())
@@ -140,7 +135,7 @@ string Ini::get(const char *parent,const char* child)
         {
             return "";
         }
-        return *_retChild->second;
+        return (*_retChild).second;
     }
     else
     {
