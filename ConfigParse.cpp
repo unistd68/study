@@ -3,10 +3,12 @@
 
 Ini::Ini(std::string ini_file)
 {
+    std::cout<<"Ini(std::string ini_file) "<<std::endl;
     if (access(ini_file.c_str(), 0) == OK)
     {
         this->err_code = file_io_errorno::FERROR_OK;
-        _open(ini_file);
+        this->err_code = _open(ini_file);
+        std::cout<<"this->err_code: "<<this->err_code<<std::endl;
     }
     else
     {
@@ -17,10 +19,12 @@ Ini::Ini(std::string ini_file)
 
 Ini::Ini(const char* ini_file)
 {
+    std::cout<<"Ini(const char* ini_file) "<<std::endl;
     if (access(ini_file, 0) == OK)
     {
         this->err_code = file_io_errorno::FERROR_OK;
         this->err_code = _readAll(ini_file);
+        std::cout<<"this->err_code: "<<this->err_code<<std::endl;
     }
     else
     {
@@ -84,13 +88,15 @@ int Ini::_readAll(const char *configfile)
         std::map<std::string, std::string> mapSection;
         std::vector<std::pair<std::string, std::string>> results;
         std::string sectionName = *itSectionName; 
-        if (_getSection(sectionName, results) != 0)
+        if (_getSection(sectionName, results) != OK)
         {
+            std::cout<<"_getSection fail"<<std::endl;
             return file_io_errorno::FERROR_GETSECTIONFAIL;
         }
-std::map<std::string, std::map<std::string, std::string>> m_map4AllItems;
+        std::map<std::string, std::map<std::string, std::string>> m_map4AllItems;
         BOOST_FOREACH(auto &key , results)
         {
+            std::cout<<"BOOST_FOREACH ,key:"<<key.first<<",value:"<<key.value<<std::endl;
             mapSection.emplace(key);
         }
         //m_map4AllItems.emplace(std::make_pair<std::string, std::map<std::string, std::string>>(*itSectionName, mapSection));
