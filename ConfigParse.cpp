@@ -70,7 +70,7 @@ string Ini::get(string path)
 int Ini::_readAll(const char *configfile)
 {
     std::vector<std::string> vSectionNameLists;
-    std::foreach (auto &section in m_pt)
+    std::for (auto &section in m_pt)
     {
         std::string strSectionName = section.first;
         vSectionNameLists.emplace_back(strSectionName);
@@ -87,7 +87,7 @@ int Ini::_readAll(const char *configfile)
             return file_io_errorno::FERROR_GETSECTIONFAIL;
         }
 
-        std::foreach (auto &key in results)
+        std::for (auto &key in results)
         {
             mapSection.emplace(key);
         }
@@ -105,7 +105,7 @@ int Ini::_getSection(const string &section,
     {
         auto lvbtItems = this->m_pt.get_child(section.c_str());
 
-        std::foreach (auto &i in lvbtItems)
+        std::for (auto &i in lvbtItems)
         {
             results.push_back(std::make_pair(i.first.data(), i.second.data()));
         }
@@ -128,14 +128,14 @@ string Ini::get(const char *parent,const char* child)
         {
             return "";
         }
-        std::map<std::string, std::string> mChilds = *_retParent;
+        std::map<std::string, std::string> mChilds = _retParent->second;
 
         auto _retChild = mChilds.find(child);
         if(_retChild == mChilds.end())
         {
             return "";
         }
-        return (*_retChild).second;
+        return *_retChild->second;
     }
     else
     {
