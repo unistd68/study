@@ -108,8 +108,7 @@ int Ini::_readAll(const char *configfile)
     return file_io_errorno::FERROR_OK;
 }
 
-int Ini::_getSection(const std::string &section,
-                     std::vector<std::pair<std::string, std::string>> &results)
+int Ini::_getSection(const std::string &section,std::vector<std::pair<std::string, std::string>> &results)
 {
     
     try
@@ -134,18 +133,24 @@ std::string Ini::get(const char *parent,const char* child)
 {
     if (this->err_code == file_io_errorno::FERROR_OK)
     {
+        std::cout<<"err_code ok"<<std::endl;
+        std::cout<<"map size:"<<m_map4AllItems.size()<<std::endl;
         auto _retParent = m_map4AllItems.find(parent);
         if(_retParent == m_map4AllItems.end())
         {
+            std::cout<<"find parent fail"<<std::endl;
             return "";
         }
+        std::cout<<"find parent ok"<<std::endl;
         std::map<std::string, std::string> mChilds = _retParent->second;
 
         auto _retChild = mChilds.find(child);
         if(_retChild == mChilds.end())
         {
+            std::cout<<"find child fail"<<std::endl;
             return "";
         }
+        std::cout<<"find child ok"<<std::endl;
         return _retChild->second;
     }
     else
