@@ -25,15 +25,15 @@ int initConfig(const char* file,StSConfig& stSConfig)
 {
 	Ini ini(file);
 	ini.displayConfigs();
-	stConfig._mConfigs = ini.getConfigs();
+	ini.getConfigs(stSConfig._mConfigs);
 	// std::string host = ini.get("epoll_server","host");
 	// std::string port = ini.get("epoll_server","port");
 	// std::cout<<"host:"<<host<<std::endl;
 	// std::cout<<"port:"<<port<<std::endl;
 	for(auto& key : stSConfig._vKeyNames)
 	{
-		std::string strValue = ini.get(stSConfig._strSection,*key.c_str());
-		stSConfig._mConfigs.empplace(std::make_pair(*key.c_str(),strValue.c_str()));
+		std::string strValue = ini.get(stSConfig._strSection.c_str(),*key.c_str());
+		stSConfig._mConfigs.emplace(std::make_pair(*key.c_str(),strValue.c_str()));
 	}
 	std::cout<<"stConfig._mConfigs size:"<<stConfig._mConfigs.size()<<std::endl;
 	return OK;
@@ -41,7 +41,7 @@ int initConfig(const char* file,StSConfig& stSConfig)
 
 int initTCPServ(int argc, char *argv[])
 {
-	STConfig& stConfig;
+	StSConfig& stConfig;
 	stConfig._strSection = CONST_CONFIG_EPOLL;
 	stConfig._vKeyNames.emplace_back(CONST_CONFIG_HOST);
 	stConfig._vKeyNames.emplace_back(CONST_CONFIG_PORT);
@@ -83,12 +83,12 @@ int initTCPServ(int argc, char *argv[])
 
 void test()
 {
-	redis_def::test();
+	redis_def::testRedis();
 
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-	initTCPServ();
+	initTCPServ(argc,argv);
 	return 0;
 }
