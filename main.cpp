@@ -8,10 +8,10 @@
  */
 
 #include "headers.h"
-// #include "HttpServer.hpp"
-// #include "UseRedis.h"
-// #include "ErrorNO.h"
-// #include "ConfigParse.h"
+#include "HttpServer.hpp"
+#include "UseRedis.h"
+#include "ErrorNO.h"
+#include "ConfigParse.h"
 
 using namespace std;
 using namespace boost;
@@ -28,10 +28,10 @@ int initConfig()
 	std::string port = ini.get("epoll_server","port");
 	std::cout<<"host:"<<host<<std::endl;
 	std::cout<<"port:"<<port<<std::endl;
-
+	return OK;
 }
 
-init initServ(int argc, char *argv[])
+int initServ(int argc, char *argv[])
 {
 	unsigned short port = 8888;
 	if (argc > 3)
