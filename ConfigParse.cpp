@@ -103,6 +103,7 @@ int Ini::_readAll(const char *configfile)
         //m_map4AllItems.emplace(std::make_pair<std::string, std::map<std::string, std::string>>(*itSectionName, mapSection));
         //std::string sectionName = *itSectionName;
         m_map4AllItems.emplace(sectionName, mapSection);
+        std::cout<<"_readAll ,map size:"<<m_map4AllItems.size()<<std::endl;
     }
 
     return file_io_errorno::FERROR_OK;
@@ -134,7 +135,7 @@ std::string Ini::get(const char *parent,const char* child)
     if (this->err_code == file_io_errorno::FERROR_OK)
     {
         std::cout<<"err_code ok"<<std::endl;
-        std::cout<<"map size:"<<m_map4AllItems.size()<<std::endl;
+        std::cout<<"get ,map size:"<<m_map4AllItems.size()<<std::endl;
         auto _retParent = m_map4AllItems.find(parent);
         if(_retParent == m_map4AllItems.end())
         {
