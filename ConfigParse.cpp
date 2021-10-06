@@ -1,7 +1,7 @@
 #include "ConfigParse.h"
 
 
-Ini::Ini(string ini_file)
+Ini::Ini(std::string ini_file)
 {
     if (access(ini_file.c_str(), 0) == OK)
     {
@@ -30,7 +30,7 @@ Ini::Ini(const char* ini_file)
 
 Ini::~Ini() {}
 
-int Ini::_open(const string ini_file)
+int Ini::_open(const std::string ini_file)
 {
     if (ini_file.empty())
     {
@@ -56,7 +56,7 @@ int Ini::errCode()
     return this->err_code;
 }
 
-string Ini::get(string path)
+std::string Ini::get(std::string path)
 {
     if (this->err_code == file_io_errorno::FERROR_OK)
     {
@@ -101,7 +101,7 @@ std::map<std::string, std::map<std::string, std::string>> m_map4AllItems;
     return file_io_errorno::FERROR_OK;
 }
 
-int Ini::_getSection(const string &section,
+int Ini::_getSection(const std::string &section,
                      std::vector<std::pair<std::string, std::string>> &results)
 {
     
@@ -123,7 +123,7 @@ int Ini::_getSection(const string &section,
 }
 
 
-string Ini::get(const char *parent,const char* child)
+std::string Ini::get(const char *parent,const char* child)
 {
     if (this->err_code == file_io_errorno::FERROR_OK)
     {
