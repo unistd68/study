@@ -94,7 +94,7 @@ int Ini::_readAll(const char *configfile)
             std::cout<<"_getSection fail"<<std::endl;
             return file_io_errorno::FERROR_GETSECTIONFAIL;
         }
-        std::map<std::string, std::map<std::string, std::string>> m_map4AllItems;
+        //std::map<std::string, std::map<std::string, std::string>> m_map4AllItems;
         BOOST_FOREACH(auto &key , results)
         {
             std::cout<<"BOOST_FOREACH ,key:"<<key.first<<",value:"<<key.second<<std::endl;
