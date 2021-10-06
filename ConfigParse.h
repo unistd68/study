@@ -7,7 +7,7 @@
 class Ini
 {
 public:
-    explicit Ini(const string ini_file);
+    explicit Ini(const std::string ini_file);
     explicit Ini(const char* ini_file);
     ~Ini();
     Ini() = delete;
