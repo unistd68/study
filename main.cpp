@@ -22,28 +22,28 @@ void commandHelp()
 int initConfig()
 {
 	Ini ini("serv.ini");
-	string host = ini.get("epoll_server","host");
-	string port = ini.get("epoll_server","port");
-	cout<<"host:"<<host<<endl;
-	cout<<"port:"<<port<<endl;
+	std::string host = ini.get("epoll_server","host");
+	std::string port = ini.get("epoll_server","port");
+	std::cout<<"host:"<<host<<std::endl;
+	std::cout<<"port:"<<port<<std::endl;
 
 }
 
-void initServ(int argc, char *argv[])
+init initServ(int argc, char *argv[])
 {
 	unsigned short port = 8888;
 	if (argc > 3)
 	{
-		cerr << "At most two arguments." << endl;
+		std::cerr << "At most two arguments." << std::endl;
 		return -1;
 	}
 	if (argc == 2)
 		port = atoi(argv[1]);
 	else if (argc == 3)
 	{
-		if (strcmp(argv[1], "--port") != 0)
+		if (std::strcmp(argv[1], "--port") != 0)
 		{
-			cerr << "Unknown command \"" << argv[1] << "\"" << endl;
+			std::cerr << "Unknown command \"" << argv[1] << "\"" << endl;
 			return -2;
 		}
 		port = atoi(argv[2]);
@@ -59,6 +59,7 @@ void initServ(int argc, char *argv[])
 	
 	server->start_serving();
 	delete server;
+	return 0;
 }
 
 void test()
