@@ -1,5 +1,5 @@
-#ifndef __HEADERS_H__
-#define __HEADERS_H__
+#ifndef __ErrorNO_H__
+#define __ErrorNO_H__
 
 const int OK = 0;
 

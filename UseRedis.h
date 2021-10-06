@@ -6,8 +6,8 @@
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\UseRedis.h
  */
-#ifndef __HEADERS_H__
-#define __HEADERS_H__
+#ifndef __USEREDIS_H__
+#define __USEREDIS_H__
 
 #include "headers.h"
 
