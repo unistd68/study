@@ -71,9 +71,9 @@ string Ini::get(string path)
 int Ini::_readAll(const char *configfile)
 {
     std::vector<std::string> vSectionNameLists;
-    boost::foreach(auto &section , m_pt)
+    BOOST_FOREACH(auto &section , m_pt)
     {
-        std::string strSectionName = section.first;
+        //std::string strSectionName = section.first;
         vSectionNameLists.emplace_back(strSectionName);
     }
 
@@ -87,12 +87,14 @@ int Ini::_readAll(const char *configfile)
         {
             return file_io_errorno::FERROR_GETSECTIONFAIL;
         }
-
-        boost::foreach(auto &key , results)
+std::map<std::string, std::map<std::string, std::string>> m_map4AllItems;
+        BOOST_FOREACH(auto &key , results)
         {
             mapSection.emplace(key);
         }
-        m_map4AllItems.emplace(std::make_pair<std::string, std::map<std::string, std::string>>(*itSectionName, mapSection));
+        //m_map4AllItems.emplace(std::make_pair<std::string, std::map<std::string, std::string>>(*itSectionName, mapSection));
+        std::string sectionName = *itSectionName;
+        m_map4AllItems.emplace(sectionName, mapSection);
     }
 
     return file_io_errorno::FERROR_OK;
@@ -101,12 +103,12 @@ int Ini::_readAll(const char *configfile)
 int Ini::_getSection(const string &section,
                      std::vector<std::pair<std::string, std::string>> &results)
 {
-
+    
     try
     {
         auto lvbtItems = this->m_pt.get_child(section.c_str());
 
-        boost::foreach(auto &i , lvbtItems)
+        BOOST_FOREACH(auto &i , lvbtItems)
         {
             results.push_back(std::make_pair(i.first.data(), i.second.data()));
         }
