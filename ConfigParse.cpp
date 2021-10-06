@@ -166,7 +166,7 @@ void Ini::displayConfigs()
         std::cout <<"sections name:" << itSectionName->first <<std::endl;
         for(auto &child :itSectionName->second)
         {
-            std::cout<<"sections name:" << itSectionName->first<<",child key:"<<key.first<<",child value:"<<key.second<<std::endl;
+            std::cout<<"sections name:" << itSectionName->first<<",child key:"<<child.first<<",child value:"<<child.second<<std::endl;
         }
     }
 }
