@@ -12,19 +12,19 @@ echo "### current position ###"
 pwd
 echo "* files *"
 ls -l
-sid=$(pidof my_http)
+sid=$(pidof my_service)
 echo  $sid
 if [ $sid  ]
 then
   sudo kill -9 $sid
 fi
-sudo /bin/rm -f my_http
-sudo /bin/rm -f /home/xtcgch/MyService/my_http
+sudo /bin/rm -f my_service
+sudo /bin/rm -f /home/xtcgch/MyService/my_service
 echo "* begin make *"
 make
 echo "* files *"
-sudo /bin/cp -f my_http /home/xtcgch/MyService/my_http
-(nohup /home/xtcgch/MyService/my_http &)
+sudo /bin/cp -f my_http /home/xtcgch/MyService/my_service
+(nohup /home/xtcgch/MyService/my_service &)
 echo "### build finished ! ###"
 ps -ef | grep my_service
 valgrind --leak-check=full --show-reachable=yes --trace-children=yes --log-file=test.log --time-stamp=yes ./my_service 
