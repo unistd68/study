@@ -171,8 +171,3 @@ void Ini::displayConfigs()
     }
 }
 
-int Ini::getConfigs(std::map<std::string, std::map<std::string, std::string>> &configs)
-{
-    configs = this->m_map4AllItems;
-    return file_io_errorno::FERROR_OK;
-}

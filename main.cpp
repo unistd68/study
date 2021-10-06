@@ -25,7 +25,6 @@ int initConfig(const char* file,StSConfig& stSConfig)
 {
 	Ini ini(file);
 	ini.displayConfigs();
-	ini.getConfigs(stSConfig._mConfigs);
 	// std::string host = ini.get("epoll_server","host");
 	// std::string port = ini.get("epoll_server","port");
 	// std::cout<<"host:"<<host<<std::endl;

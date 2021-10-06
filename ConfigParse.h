@@ -28,7 +28,6 @@ public:
     std::string get(std::string path);
     std::string get(const char *parent,const char* child);
     void displayConfigs();
-    int getConfigs(std::map<std::string, std::map<std::string, std::string>>& configs);
     int errCode();
 
 private:
