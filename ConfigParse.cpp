@@ -60,7 +60,7 @@ std::string Ini::get(std::string path)
 {
     if (this->err_code == file_io_errorno::FERROR_OK)
     {
-        return this->m_pt.get<string>(path);
+        return this->m_pt.get<std::string>(path);
     }
     else
     {
