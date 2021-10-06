@@ -31,8 +31,8 @@ int initConfig(const char* file,StSConfig& stSConfig)
 	// std::cout<<"port:"<<port<<std::endl;
 	for(auto& key : stSConfig._vKeyNames)
 	{
-		std::string strValue = ini.get(stSConfig._strSection.c_str(),*key.c_str());
-		stSConfig._mConfigs.emplace(std::make_pair(*key.c_str(),strValue.c_str()));
+		std::string strValue = ini.get(stSConfig._strSection.c_str(),(*key).c_str());
+		stSConfig._mConfigs.emplace(std::make_pair((*key).c_str(),strValue.c_str()));
 	}
 	std::cout<<"stConfig._mConfigs size:"<<stSConfig._mConfigs.size()<<std::endl;
 	return OK;
