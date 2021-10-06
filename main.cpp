@@ -34,13 +34,13 @@ int initConfig(const char* file,StSConfig& stSConfig)
 		std::string strValue = ini.get(stSConfig._strSection.c_str(),*key.c_str());
 		stSConfig._mConfigs.emplace(std::make_pair(*key.c_str(),strValue.c_str()));
 	}
-	std::cout<<"stConfig._mConfigs size:"<<stConfig._mConfigs.size()<<std::endl;
+	std::cout<<"stConfig._mConfigs size:"<<stSConfig._mConfigs.size()<<std::endl;
 	return OK;
 }
 
 int initTCPServ(int argc, char *argv[])
 {
-	StSConfig& stConfig;
+	StSConfig stConfig;
 	stConfig._strSection = CONST_CONFIG_EPOLL;
 	stConfig._vKeyNames.emplace_back(CONST_CONFIG_HOST);
 	stConfig._vKeyNames.emplace_back(CONST_CONFIG_PORT);
@@ -49,7 +49,7 @@ int initTCPServ(int argc, char *argv[])
 		std::cout<<"initConfig fail" << std::endl;
 		return file_io_errorno::FERROR_OPENFAIL;
 	}
-	unsigned short port = std::atoi(stConfig._mConfigs[CONST_CONFIG_PORT]);
+	unsigned short port = std::atoi((stConfig._mConfigs[CONST_CONFIG_PORT]).c_str());
 	if (argc > 3)
 	{
 		std::cerr << "At most two arguments." << std::endl;
