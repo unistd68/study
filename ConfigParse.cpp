@@ -83,7 +83,7 @@ int Ini::_readAll(const char *configfile)
         std::map<std::string, std::string> mapSection;
         std::vector<std::pair<std::string, std::string>> results;
         std::string sectionName = *itSectionName; 
-        if (_getSection(*itSectionName, results, configfile) != 0)
+        if (_getSection(sectionName, results, configfile) != 0)
         {
             return file_io_errorno::FERROR_GETSECTIONFAIL;
         }
