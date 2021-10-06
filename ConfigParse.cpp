@@ -73,7 +73,7 @@ int Ini::_readAll(const char *configfile)
     std::vector<std::string> vSectionNameLists;
     BOOST_FOREACH(auto &section , m_pt)
     {
-        //std::string strSectionName = section.first;
+        std::string strSectionName = section.first;
         vSectionNameLists.emplace_back(strSectionName);
     }
 
@@ -82,7 +82,7 @@ int Ini::_readAll(const char *configfile)
     {
         std::map<std::string, std::string> mapSection;
         std::vector<std::pair<std::string, std::string>> results;
-
+        std::string sectionName = *itSectionName; 
         if (_getSection(*itSectionName, results, configfile) != 0)
         {
             return file_io_errorno::FERROR_GETSECTIONFAIL;
@@ -93,7 +93,7 @@ std::map<std::string, std::map<std::string, std::string>> m_map4AllItems;
             mapSection.emplace(key);
         }
         //m_map4AllItems.emplace(std::make_pair<std::string, std::map<std::string, std::string>>(*itSectionName, mapSection));
-        std::string sectionName = *itSectionName;
+        //std::string sectionName = *itSectionName;
         m_map4AllItems.emplace(sectionName, mapSection);
     }
 
