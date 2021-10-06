@@ -23,6 +23,7 @@ Ini::Ini(const char* ini_file)
     if (access(ini_file, 0) == OK)
     {
         this->err_code = file_io_errorno::FERROR_OK;
+        this->err_code = _open(ini_file);
         this->err_code = _readAll(ini_file);
         std::cout<<"this->err_code: "<<this->err_code<<std::endl;
     }
