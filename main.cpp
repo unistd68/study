@@ -13,6 +13,7 @@
 #include "ConfigParse.h"
 
 using namespace std;
+using namespace boost;
 
 void commandHelp()
 {
@@ -68,7 +69,7 @@ void test()
 
 }
 
-int main(int argc, char *argv[])
+int main()
 {
 	initConfig();
 	return 0;
