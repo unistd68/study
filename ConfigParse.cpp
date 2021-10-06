@@ -70,7 +70,7 @@ std::string Ini::get(std::string path)
 
 int Ini::_readAll(const char *configfile)
 {
-    std::cout<<"configfile:"<<configfile<<endl;
+    std::cout<<"configfile:"<<configfile<<std::endl;
     std::vector<std::string> vSectionNameLists;
     BOOST_FOREACH(auto &section , m_pt)
     {
