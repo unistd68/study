@@ -18,6 +18,11 @@
 #include <signal.h>
 #include <errno.h>
 #include <limits.h>
+#include <mutex>
+#include <chrono>
+#include <atomicops.h>
+#include <readerwriterqueue.h>
+
 #include <boost/foreach.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/ini_parser.hpp>
@@ -25,8 +30,10 @@
 
 #include <vector>
 #include <map>
-
-
+#include <queue>
+#include <atomic>
+#include <future>
+#include <stdexcept>
 
 
 // #ifdef _USE_REDIS_
@@ -36,11 +43,16 @@
 
 
 #include "ErrorNO.h"
-
+#include "define.h"
+#include "Tools.h"
+#include "ThreadPool.h"
 // #include "HttpServer.hpp"
 // #include "UseRedis.h"
 // #include "ErrorNO.h"
 // #include "ConfigParse.h"
+
+
+using namespace moodycamel;
 
 
 #endif
