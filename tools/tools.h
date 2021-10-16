@@ -63,7 +63,21 @@ static int ascii2HexArray(const char *in, int len, unsigned char *out)
         tmpOut[j] = alTmp[in[i] / 16];
         tmpOut[j + 1] = alTmp[in[i] % 16];
     }
-    return hex2Array(tmpOut, out);
+
+    char *p = tmpOut;
+    char high = 0, low = 0;
+    int tmplen = strlen(p), cnt = 0;
+    while (cnt < (tmplen / 2))
+    {
+            high = ((*p > '9') && ((*p <= 'F') || (*p <= 'f'))) ? *p - 48 - 7 : *p - 48;
+            low = (*(++p) > '9' && ((*p <= 'F') || (*p <= 'f'))) ? *(p)-48 - 7 : *(p)-48;
+            out[cnt] = ((high & 0x0f) << 4 | (low & 0x0f));
+            p++;
+            cnt++;
+    }
+    if (tmplen % 2 != 0)
+        out[cnt] = ((*p > '9') && ((*p <= 'F') || (*p <= 'f'))) ? *p - 48 - 7 : *p - 48;
+    return tmplen / 2 + tmplen % 2;
 }
 /**
  * @description: 
