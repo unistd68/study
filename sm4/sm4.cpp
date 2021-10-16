@@ -279,16 +279,28 @@ void sm4_crypt_cbc(sm4_context *ctx,
  */
 int SM4Encrypto(const char *key, const char *in, char *out)
 {
+    printf("key : %s\n",key);
     unsigned char arrKey[1024] = {0};
     unsigned char arrIn[1024] = {0};
-    
     unsigned char tmp[1024] = {0};
     int len_key = ascii2HexArray(key, strlen(key), arrKey);
     int len_in = ascii2HexArray(in, strlen(in), arrIn);
+    printf("加密前 arrIn :\n");
+    for(int i=0;i<len_in;i++)
+    {
+        printf("%02X ",arrIn[i]);
+    }
+    printf("\n");
     sm4_context ctx;
     sm4_setkey_enc(&ctx,arrKey);
     sm4_crypt_ecb(&ctx,1,128,arrIn,tmp);
     hexArr2String(tmp,128,out);
+    printf("加密后 tmp :\n");
+    for(int i=0;i<128;i++)
+    {
+        printf("%02X ",tmp[i]);
+    }
+    printf("\n");
     printf("## SM4Encrypto ## [key] %s \n",key);
     printf("## SM4Encrypto ## [in] %s \n",in);
     printf("## SM4Encrypto ## [out] %s \n",out);
