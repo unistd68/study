@@ -1,14 +1,5 @@
 #include "HttpServer.hpp"
 
-#include <iostream>
-#include <string>
-
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <fcntl.h>
-
 using namespace std;
 
 HttpServer::HttpServer()

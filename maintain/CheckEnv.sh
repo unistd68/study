@@ -51,7 +51,7 @@ cpu_get(){
 		;;
 		3)
 			cpu_he=`cat /proc/cpuinfo |grep "cores"|head -n1|awk -F ': ' '{print $2}'`
-			echo "CPU核心数:cpu_he 个"
+			echo "CPU核心数:$cpu_he 个"
 		;;
 		4)
 			cpu_xing=`grep "model name" /proc/cpuinfo|sort|uniq|awk -F: '{print $2}'|sed s/[[:space:]]//g`

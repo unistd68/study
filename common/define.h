@@ -1,7 +1,8 @@
 #ifndef __DEFINE_H__
 #define __DEFINE_H__
-#include <iostream>
-#include <string>
+// #include <iostream>
+// #include <string>
+#include "../includes/includes.h""
 
 const std::string CONST_CONFIG_FILE = "serv.ini"
 

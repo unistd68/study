@@ -1,11 +1,9 @@
-#ifndef HTTPSERVER_HPP
-#define HTTPSERVER_HPP
+#ifndef _HTTPSERVER_HPP_
+#define _HTTPSERVER_HPP_
 
 #include "HttpResponse.hpp"
 
-#include <fstream>
 
-#include <sys/epoll.h>
 
 #define MAX_SOCK_SIZE		1024
 #define FD_SIZE				1000
