@@ -1,5 +1,5 @@
 CC = g++
-CC_FLAGS = -W -Wall -Werror -I./ -I../../includes -I../../tools  -I../
+CC_FLAGS = -W -Wall -Werror -I./ -I../../includes -I../../tools  -I../ -I/usr/local/include/readerwriterqueue
 EXEC = test_sm4
 OBJS = test_sm4.o sm4.o 
 
