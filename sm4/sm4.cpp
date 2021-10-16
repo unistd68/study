@@ -278,10 +278,10 @@ void sm4_crypt_cbc(sm4_context *ctx,
  */
 int SM4Encrypto(const char *key, const char *in, char *out)
 {
-    unsigned char* arrKey[1024] = {0};
-    unsigned char* arrIn[1024] = {0};
+    unsigned char arrKey[1024] = {0};
+    unsigned char arrIn[1024] = {0};
     
-    unsigned char* tmp[1024] = {0};
+    unsigned char tmp[1024] = {0};
     int len_key = ascii2HexArray(key, strlen(key), arrKey);
     int len_in = ascii2HexArray(in, strlen(in), arrIn);
     sm4_context ctx;
