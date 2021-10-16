@@ -10,9 +10,9 @@ $(EXEC): $(OBJS)
 
 sm4.o: sm4.cpp sm4.h tools.h
 	$(CC) $(CC_FLAGS) -c -o $@ sm4.cpp
-	
+
 test_sm4.o: test_sm4.cpp sm4.o
-	$(CC) $(CC_FLAGS) -c -o $@ test_sm4.cpp sm4.o
+	$(CC) $(CC_FLAGS) -c -o $@ test_sm4.cpp sm4.o sm4.cpp
 	
 
 
