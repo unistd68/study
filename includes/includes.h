@@ -20,8 +20,8 @@
 #include <mutex>
 #include <fstream>
 
-
-extern "C"
+#ifdef __cplusplus
+extern “C”
 {
 #include <stdio.h>
 #include <string.h>
@@ -41,7 +41,7 @@ extern "C"
 #include <fcntl.h>
 #include <sys/epoll.h>
 }
-
+#endif
 
 #include <readerwriterqueue.h>
 
@@ -49,7 +49,6 @@ extern "C"
 #include <boost/foreach.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/ini_parser.hpp>
-
 
 #include <atomic>
 #include <future>
