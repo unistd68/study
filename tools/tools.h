@@ -113,7 +113,7 @@ std::string GetRandStr(int len) /*参数为字符串的长度*/
         //str.emplace_back(c); /*push_back()是string类尾插函数。这里插入随机字符c*/
         str << c;
     }
-    return str.c_str(); /*返回生成的随机字符串*/
+    return str.str(); /*返回生成的随机字符串*/
 }
 
 #endif
