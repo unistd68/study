@@ -11,7 +11,7 @@
 #define _SM4_H_
 
 #include "../includes/includes.h"
-#include "../tools/tools.h"
+
 
 #define SM4_ENCRYPT 1
 #define SM4_DECRYPT 0

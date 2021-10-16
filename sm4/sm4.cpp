@@ -7,6 +7,7 @@
  * @FilePath: \dubbo-goe:\code\study\sm4\sm4.cpp
  */
 #include "sm4.h"
+#include "../tools/tools.h"
 /*
  * 32-bit integer manipulation macros (big endian)
  */

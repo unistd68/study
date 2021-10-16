@@ -72,7 +72,7 @@ static int ascii2HexArray(const char *in, int len, unsigned char *out)
  * @param {char} *out
  * @return {*}
  */
-static nt hexArr2String(unsigned char *in, int len, char *out)
+static int hexArr2String(unsigned char *in, int len, char *out)
 {
     unsigned char strBuf[1024] = {0};
     char pbuf[32];
