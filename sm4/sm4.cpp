@@ -288,7 +288,7 @@ int SM4Encrypto(const char *key, const char *in, char *out)
     printf("加密前 arrIn :\n");
     for(int i=0;i<len_in;i++)
     {
-        printf("%02X ",arrIn[i]);
+        printf("%02X",arrIn[i]);
     }
     printf("\n");
     sm4_context ctx;
