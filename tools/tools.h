@@ -63,7 +63,8 @@ static int ascii2HexArray(const char *in, int len, unsigned char *out)
         tmpOut[j] = alTmp[in[i] / 16];
         tmpOut[j + 1] = alTmp[in[i] % 16];
     }
-
+    printf("%s",tmpOut);
+    printf("\n");
     char *p = tmpOut;
     char high = 0, low = 0;
     int tmplen = strlen(p), cnt = 0;
