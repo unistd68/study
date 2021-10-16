@@ -16,7 +16,7 @@
  * @param {unsigned char} *out
  * @return {int} 
  */
-static int hex2Array(unsigned char *in, unsigned char *out)
+int hex2Array(unsigned char *in, unsigned char *out)
 {
     unsigned char *p = in;
     char high = 0, low = 0;
@@ -53,7 +53,7 @@ Sample:         (in)data: 123M,(out):3132334d
  * @param {unsigned char} *out
  * @return {*}
  */
-static int ascii2HexArray(const char *in, int len, unsigned char *out)
+int ascii2HexArray(const char *in, int len, unsigned char *out)
 {
     unsigned char tmpOut[1024] = {0};
     int i = 0, j = 0;
@@ -87,7 +87,7 @@ static int ascii2HexArray(const char *in, int len, unsigned char *out)
  * @param {char} *out
  * @return {*}
  */
-static int hexArr2String(unsigned char *in, int len, char *out)
+int hexArr2String(unsigned char *in, int len, char *out)
 {
     unsigned char strBuf[1024] = {0};
     char pbuf[32];
@@ -106,14 +106,14 @@ static int hexArr2String(unsigned char *in, int len, char *out)
     return index * 2;
 }
 /*c++ 利用chrono函数获取时间戳 毫秒级*/
-static std::string GetTimeStamp()
+std::string GetTimeStamp()
 {
     auto timeNow = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
     long long timestamp = timeNow.count();
     return std::to_string(timestamp);
 }
 
-static std::string GetRandStr(int len) /*参数为字符串的长度*/
+std::string GetRandStr(int len) /*参数为字符串的长度*/
 {
     /*初始化*/
     //std::string str; /*声明用来保存随机字符串的str*/
