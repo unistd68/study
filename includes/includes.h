@@ -21,7 +21,7 @@
 #include <fstream>
 
 #ifdef __cplusplus
-extern “C”
+extern "C"
 {
 #include <stdio.h>
 #include <string.h>
