@@ -4,7 +4,7 @@
 // #include <string>
 #include "../includes/includes.h"
 
-const std::string CONST_CONFIG_FILE = "serv.ini"
+const std::string CONST_CONFIG_FILE = "serv.ini";
 
 const std::string CONST_CONFIG_EPOLL = "epoll_server";
 const std::string CONST_CONFIG_REDIS = "redis_server";

@@ -3,7 +3,7 @@ CC_FLAGS = -W -Wall -Werror -I./ -I../../includes -I../../tools  -I../ -I/usr/lo
 EXEC = test_sm4
 OBJS = test_sm4.o sm4.o 
 
-CC_FLAGS += -std=c++11
+CC_FLAGS += -std=c++11 -fpermissive
 
 $(EXEC): $(OBJS)
 	$(CC) $(CC_FLAGS) $(OBJS) -o $@

@@ -20,9 +20,9 @@
 #include <mutex>
 #include <fstream>
 
-#ifdef __cplusplus
-extern "C"
-{
+// #ifdef __cplusplus
+// extern "C"
+// {
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -40,8 +40,8 @@ extern "C"
 #include <arpa/inet.h>
 #include <fcntl.h>
 #include <sys/epoll.h>
-}
-#endif
+// }
+// #endif
 
 #include <readerwriterqueue.h>
 
