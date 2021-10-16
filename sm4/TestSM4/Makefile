@@ -9,7 +9,7 @@ $(EXEC): $(OBJS)
 	$(CC) $(CC_FLAGS) $(OBJS) -o $@
 
 test_sm4.o: test_sm4.cpp sm4.cpp sm4.h
-	$(CC) $(CC_FLAGS) -c -o $@ test_sm4.cpp
+	$(CC) $(CC_FLAGS) -c -o $@ test_sm4.cpp sm4.cpp sm4.h
 	
 sm4.o: sm4.cpp sm4.h
 	$(CC) $(CC_FLAGS) -c -o $@ sm4.cpp
