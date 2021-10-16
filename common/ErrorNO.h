@@ -40,7 +40,7 @@ namespace redis_io_errorno
 
 
     //RETURN RESULT
-    const int REDIS_OK = 0;
+    const int GCH_REDIS_OK = 0;
     const int REDIS_CONNECT_FAIL = -1;
     const int REDIS_SEND_FAIL = -2;
 

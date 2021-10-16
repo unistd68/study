@@ -47,8 +47,9 @@ void testSM4Decrypto()
     }
 }
 
-void main()
+int main()
 {
     testSM4Encrypto();
     testSM4Decrypto();
+    return 0;
 }

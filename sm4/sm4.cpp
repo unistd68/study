@@ -285,7 +285,7 @@ int SM4Encrypto(const char *key, const char *in, char *out)
     int len_key = ascii2HexArray(key, strlen(key), arrKey);
     int len_in = ascii2HexArray(in, strlen(in), arrIn);
     sm4_context ctx;
-    sm4_setkey_dec(&ctx,arrKey);
+    sm4_setkey_enc(&ctx,arrKey);
     sm4_crypt_ecb(&ctx,1,128,arrIn,tmp);
     hexArr2String(tmp,128,out);
     printf("## SM4Encrypto ## [key] %s \n",key);
@@ -303,7 +303,20 @@ int SM4Encrypto(const char *key, const char *in, char *out)
  */
 int SM4Decrypto(const char *key, const char *in, char *out)
 {
-
+    unsigned char* arrKey[1024] = {0};
+    unsigned char* arrIn[1024] = {0};
+    
+    unsigned char* tmp[1024] = {0};
+    int len_key = ascii2HexArray(key, strlen(key), arrKey);
+    int len_in = ascii2HexArray(in, strlen(in), arrIn);
+    sm4_context ctx;
+    sm4_setkey_dec(&ctx,arrKey);
+    sm4_crypt_ecb(&ctx,0,128,arrIn,tmp);
+    hexArr2String(tmp,128,out);
+    sprintf(out,"%s",tmp);
+    printf("## SM4Encrypto ## [key] %s \n",key);
+    printf("## SM4Encrypto ## [in] %s \n",in);
+    printf("## SM4Encrypto ## [out] %s \n",out);
     return 0;
 }
 

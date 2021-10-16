@@ -82,7 +82,7 @@ int RedisManager::_redisConnect()
 {
     if (this->_redis != NULL)
     {
-        return redis_io_errorno::REDIS_OK;
+        return redis_io_errorno::GCH_REDIS_OK;
     }
     this->_redis = redisConnect(this->_ip, this->_port); // 用来连接redis数据库，参数为数据库的ip地址和端口，一般redis数据库的端口为6379。类似的函数有redisContext* redisConnectWithTimeout(const char *ip, int port, timeval tv)
     if (this->_redis == NULL || this->_redis->err)       //当 redis->err 为真时，redis->errstr 显示具体的错误原因
@@ -91,7 +91,7 @@ int RedisManager::_redisConnect()
         return redis_io_errorno::REDIS_CONNECT_FAIL;
     }
     this->_conn_status = redis_io_errorno::REDIS_CONNECT_ONLINE;
-    return redis_io_errorno::REDIS_OK;
+    return redis_io_errorno::GCH_REDIS_OK;
 }
 
 int RedisManager::_redisReConnect()
@@ -108,7 +108,7 @@ int RedisManager::_redisReConnect()
         return redis_io_errorno::REDIS_CONNECT_FAIL;
     }
     this->_conn_status = redis_io_errorno::REDIS_CONNECT_ONLINE;
-    return redis_io_errorno::REDIS_OK;
+    return redis_io_errorno::GCH_REDIS_OK;
 }
 
 int RedisManager::getConnStatus()
@@ -133,7 +133,7 @@ int RedisManager::_refreshConnStatus()
         {
             // ping ok
             this->_conn_status = redis_io_errorno::REDIS_CONNECT_ONLINE;
-            return redis_io_errorno::REDIS_OK;
+            return redis_io_errorno::GCH_REDIS_OK;
         }
     }
     this->_conn_status = redis_io_errorno::REDIS_CONNECT_OFFLINE;
@@ -145,7 +145,7 @@ int RedisManager::_genID()
     std::string _timestamp = GetTimeStamp();
     std::string _rand_str = GetRandStr(5);
     this->_id = CONST_REDIS_PREFIX + _timestamp + _rand_str;
-    return redis_io_errorno::REDIS_OK;
+    return redis_io_errorno::GCH_REDIS_OK;
 }
 
 std::string RedisManager::sendMsg(std::string strSendMsg)
@@ -249,7 +249,7 @@ int RedisPool::initPool(const char *ip, int port, int num)
     this->_empty_num = num;
     this->_work_conn = 0;
 
-    return redis_io_errorno::REDIS_OK;
+    return redis_io_errorno::GCH_REDIS_OK;
 }
 
 /***************************************************** RedisPool : private ************************************************************************/

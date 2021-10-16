@@ -21,7 +21,7 @@
 #include <fstream>
 
 
-extern "c"
+extern "C"
 {
 #include <stdio.h>
 #include <string.h>

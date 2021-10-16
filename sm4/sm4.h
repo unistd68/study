@@ -12,7 +12,22 @@
 
 #include "../includes/includes.h"
 #include "../tools/tools.h"
+/**
+ * @description: ascii字符串加密为ascii字符串
+ * @param {char} *key
+ * @param {char} *in
+ * @param {char} *out
+ * @return {*}
+ */
+int SM4Decrypto(const char *key, const char *in, char *out);
 
-
+/**
+ * @description: hex字符串解密为ascii字符串
+ * @param {char} *key
+ * @param {char} *in
+ * @param {char} *out
+ * @return {*}
+ */
+int SM4Encrypto(const char *key, const char *in, char *out);
 
 #endif
