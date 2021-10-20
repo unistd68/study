@@ -1,7 +1,7 @@
 /*
 * @Author: your name
 * @Date: 2021-10-16 17:29:00
- * @LastEditTime: 2021-10-21 01:27:40
+ * @LastEditTime: 2021-10-21 01:31:50
  * @LastEditors: Please set LastEditors
 * @Description: In User Settings Edit
 * @FilePath: \dubbo-goe:\code\study\tools\com_tools.h
@@ -157,10 +157,19 @@ static std::string get_format_time_string() //获取格式化时间
  */
 static int get_timestamp()
 {
-    time_t myt = time(NULL);
-    time_t t;
-    time(&t);
-    return static_cast<int>(t.time);
+    time_t timep;
+    struct tm *p;
+    time(&timep); /*当前time_t类型UTC时间*/
+    //printf("time():%d\n",timep);
+    p = localtime(&timep); /*转换为本地的tm结构的时间按*/
+    timep = mktime(p);
+    return timep;
+
+
+    // time_t myt = time(NULL);
+    // time_t t;
+    // time(&t);
+    // return static_cast<int>(t.time);
 }
 
 #endif
