@@ -1,7 +1,7 @@
 /*
 * @Author: your name
 * @Date: 2021-10-16 17:29:00
- * @LastEditTime: 2021-10-20 21:25:31
+ * @LastEditTime: 2021-10-21 01:27:40
  * @LastEditors: Please set LastEditors
 * @Description: In User Settings Edit
 * @FilePath: \dubbo-goe:\code\study\tools\com_tools.h
@@ -160,7 +160,7 @@ static int get_timestamp()
     time_t myt = time(NULL);
     time_t t;
     time(&t);
-    return t.time;
+    return static_cast<int>(t.time);
 }
 
 #endif

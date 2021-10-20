@@ -3,16 +3,16 @@ CC_FLAGS = -W -Wall  -I../../include -I../../../includes -I../../../tools  -I/us
 EXEC = test_sm4
 OBJS = test_sm4.o sm4.o 
 
-CC_FLAGS += -std=c++11 -fpermissive
+CC_FLAGS += -std=c++11 -fpermissive -lstdc++
 
 $(EXEC): $(OBJS)
 	$(CC) $(CC_FLAGS) $(OBJS) -o $@
 
 sm4.o: ../sm4.cpp ../sm4.h 
-	$(CC) $(CC_FLAGS) -c -o $@ ../sm4.cpp
+	$(CC) $(CC_FLAGS)  -o $@ -C  ../../src/sm4.cpp
 
 test_sm4.o: test_sm4.cpp 
-	$(CC) $(CC_FLAGS) -c -o $@ test_sm4.cpp ../sm4.cpp
+	$(CC) $(CC_FLAGS)  -o $@ -C  test_sm4.cpp ../../src/sm4.cpp
 	
 
 
