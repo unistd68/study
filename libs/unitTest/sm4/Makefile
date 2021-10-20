@@ -8,7 +8,7 @@ CC_FLAGS += -std=c++11 -fpermissive -lstdc++
 $(EXEC): $(OBJS)
 	$(CC) $(CC_FLAGS) $(OBJS) -o $@
 
-sm4.o: ../sm4.cpp ../sm4.h 
+sm4.o:  ../../src/sm4.cpp 
 	$(CC) $(CC_FLAGS)  -o $@ -C  ../../src/sm4.cpp
 
 test_sm4.o: test_sm4.cpp 
