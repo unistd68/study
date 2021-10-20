@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-16 17:30:31
- * @LastEditTime: 2021-10-16 17:41:43
+ * @LastEditTime: 2021-10-20 21:40:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\includes\includes.h
@@ -53,6 +53,15 @@
 #include <atomic>
 #include <future>
 #include <stdexcept>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <memory.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 // redis
 // #ifdef _USE_REDIS_

@@ -1,8 +1,8 @@
 /*
 * @Author: your name
 * @Date: 2021-10-16 17:29:00
-* @LastEditTime: 2021-10-16 17:44:29
-* @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-10-20 21:25:31
+ * @LastEditors: Please set LastEditors
 * @Description: In User Settings Edit
 * @FilePath: \dubbo-goe:\code\study\tools\com_tools.h
 */
@@ -63,19 +63,19 @@ int ascii2HexArray(const char *in, int len, unsigned char *out)
         tmpOut[j] = alTmp[in[i] / 16];
         tmpOut[j + 1] = alTmp[in[i] % 16];
     }
-    printf("len: %d\n",len);
-    printf("tmpOut: %s",tmpOut);
+    printf("len: %d\n", len);
+    printf("tmpOut: %s", tmpOut);
     printf("\n");
     char *p = tmpOut;
     char high = 0, low = 0;
     int tmplen = strlen(p), cnt = 0;
     while (cnt < (tmplen / 2))
     {
-            high = ((*p > '9') && ((*p <= 'F') || (*p <= 'f'))) ? *p - 48 - 7 : *p - 48;
-            low = (*(++p) > '9' && ((*p <= 'F') || (*p <= 'f'))) ? *(p)-48 - 7 : *(p)-48;
-            out[cnt] = ((high & 0x0f) << 4 | (low & 0x0f));
-            p++;
-            cnt++;
+        high = ((*p > '9') && ((*p <= 'F') || (*p <= 'f'))) ? *p - 48 - 7 : *p - 48;
+        low = (*(++p) > '9' && ((*p <= 'F') || (*p <= 'f'))) ? *(p)-48 - 7 : *(p)-48;
+        out[cnt] = ((high & 0x0f) << 4 | (low & 0x0f));
+        p++;
+        cnt++;
     }
     if (tmplen % 2 != 0)
         out[cnt] = ((*p > '9') && ((*p <= 'F') || (*p <= 'f'))) ? *p - 48 - 7 : *p - 48;
@@ -130,6 +130,37 @@ std::string GetRandStr(int len) /*参数为字符串的长度*/
         str << c;
     }
     return str.str(); /*返回生成的随机字符串*/
+}
+
+/**
+ * @description: 获取当前时间的字符串
+ * @param {*}
+ * @return {*}
+ */
+static std::string get_format_time_string() //获取格式化时间
+{
+    time_t now;
+    struct tm *tm_now;
+    char datetime[128];
+
+    time(&now);
+    tm_now = localtime(&now);
+    strftime(datetime, 128, "%Y-%m-%d %H:%M:%S", tm_now);
+
+    return datetime;
+}
+
+/**
+ * @description: 获取时间戳
+ * @param {*}
+ * @return 秒级时间戳
+ */
+static int get_timestamp()
+{
+    time_t myt = time(NULL);
+    time_t t;
+    time(&t);
+    return t.time;
 }
 
 #endif
