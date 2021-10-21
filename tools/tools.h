@@ -1,7 +1,7 @@
 /*
 * @Author: your name
 * @Date: 2021-10-16 17:29:00
- * @LastEditTime: 2021-10-22 00:33:25
+ * @LastEditTime: 2021-10-22 00:38:46
  * @LastEditors: Please set LastEditors
 * @Description: In User Settings Edit
 * @FilePath: \dubbo-goe:\code\study\tools\com_tools.h
@@ -53,7 +53,7 @@ Sample:         (in)data: 123M,(out):3132334d
  * @param {unsigned char} *out
  * @return {*}
  */
-int ascii2HexArray(const char *in, int len, unsigned char *out)
+int ascii2HexArray(const unsigned char *in, int len, unsigned char *out)
 {
     unsigned char tmpOut[1024] = {0};
     int i = 0, j = 0;

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-16 17:25:29
- * @LastEditTime: 2021-10-22 00:37:01
+ * @LastEditTime: 2021-10-22 00:39:54
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\sm4\sm4.cpp
@@ -277,7 +277,7 @@ void sm4_crypt_cbc(sm4_context *ctx,
  * @param {char} *out : hex字符串，如： 7812452D
  * @return {in} : 0： 成功，-1： 失败
  */
-int SM4Encrypto(const char *key, const char *in, char *out)
+int SM4Encrypto(const char *key, const unsigned char *in, char *out)
 {
     //printf("key : %s\n", key);
     unsigned char arrKey[1024] = {0};
@@ -327,7 +327,7 @@ int SM4Decrypto(const char *key, const char *in, char *out)
     sm4_context ctx;
     sm4_setkey_dec(&ctx, arrKey);
     sm4_crypt_ecb(&ctx, 0, len_in, arrIn, tmp);
-    hexArr2String(tmp, len_in, out);
+    //hexArr2String(tmp, len_in, out);
     sprintf(out, "%s", tmp);
     // printf("## SM4Encrypto ## [key] %s \n", key);
     // printf("## SM4Encrypto ## [in] %s \n", in);

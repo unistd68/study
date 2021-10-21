@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-16 17:27:52
- * @LastEditTime: 2021-10-22 00:25:00
+ * @LastEditTime: 2021-10-22 00:40:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\sm4\TestSM4\test_sm4.cpp
@@ -20,7 +20,7 @@
 void testSM4Encrypto()
 {
     const char *key = "1234567890abcdef";
-    const char *in = "{\"name\":\"张三\",\"age\":\"18\",\"sex\":\"male\"}";
+    const unsigned char *in = "{\"name\":\"张三\",\"age\":\"18\",\"sex\":\"male\"}";
     //const char *in = "wqetwdadada";
     char out[1024] = {0};
     SM4Encrypto(key, in, out);

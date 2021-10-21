@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-16 17:25:19
- * @LastEditTime: 2021-10-21 20:15:44
+ * @LastEditTime: 2021-10-22 00:40:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\sm4\sm4.h
@@ -83,7 +83,7 @@ extern "C"
  * @param {char} *out
  * @return {*}
  */
-    int SM4Decrypto(const char *key, const char *in, char *out);
+    int SM4Decrypto(const char *key, const char *in, unsigned char *out);
 
     /**
  * @description: hex字符串解密为ascii字符串
@@ -92,7 +92,7 @@ extern "C"
  * @param {char} *out
  * @return {*}
  */
-    int SM4Encrypto(const char *key, const char *in, char *out);
+    int SM4Encrypto(const char *key, const unsigned char *in, char *out);
 
 #ifdef __cplusplus
 }
