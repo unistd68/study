@@ -1,13 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-10-21 20:02:56
- * @LastEditTime: 2021-10-21 20:21:55
+ * @LastEditTime: 2021-10-21 21:18:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\libs\src\sm3.c
  */
 #include "includes.h"
 #include "sm3.h"
+#include "../tools/tools.h"
 
 unsigned long H[8] = {0x7380166f, 0x4914b2b9, 0x172442d7, 0xda8a0600, 0xa96f30bc, 0x163138aa, 0xe38dee4d, 0xb0fb0e4e};
 
@@ -249,22 +250,30 @@ int sm3_str_summ(unsigned char *str, unsigned char *summ, int len)
     return 0;
 }
 
-
-
 int GetSM3String(unsigned char* in,int len,unsigned char* out)
 {
-    len = sm3_pad_message(in, len);
-
-    //print_str(str, len);
-
-    len = sm3_str_group(in, len);
-
-    //print_str(str, len);
-
-    sm3_str_summ(in, out, len);
-
-    //print_str(str, len);
-
+    unsigned char temp[1024] = {0};
+    ascii2HexArray(in,strlen(in),temp);
+    len = sm3_pad_message(temp, len);
+    len = sm3_str_group(temp, len);
+    sm3_str_summ(temp, out, len);
     print_str(out, 32);
-    return 0;
 }
+
+// int GetSM3String(unsigned char* in,int len,unsigned char* out)
+// {
+//     len = sm3_pad_message(in, len);
+
+//     //print_str(str, len);
+
+//     len = sm3_str_group(in, len);
+
+//     //print_str(str, len);
+
+//     sm3_str_summ(in, out, len);
+
+//     //print_str(str, len);
+
+//     print_str(out, 32);
+//     return 0;
+// }

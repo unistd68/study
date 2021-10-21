@@ -1,7 +1,7 @@
 ###
 # @Author: xtcgch
 # @Date: 2021-10-03 16:16:54
- # @LastEditTime: 2021-10-21 21:10:51
+ # @LastEditTime: 2021-10-21 21:23:02
  # @LastEditors: Please set LastEditors
 # @Description: In User Settings Edit
 # @FilePath: \dubbo-goe:\code\study\sm4\TestSM4\Makefile
@@ -51,12 +51,12 @@ show_help() {
     echo " ################################################# "
 }
 
-if [ "$#" != "2" ]; then
+if [ "$#" != "1" ]; then
     show_help
     exit 1
 fi
 
-if [ "$1" == "1" ]]; then
+if [ "$1" == "1" ]; then
     build_sm3_test
 elif [ "$1" == "2" ]; then
     build_sm4_test
