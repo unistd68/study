@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-16 17:25:29
- * @LastEditTime: 2021-10-22 01:04:44
+ * @LastEditTime: 2021-10-22 01:07:54
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\sm4\sm4.cpp
@@ -226,12 +226,14 @@ void sm4_crypt_ecb(sm4_context *ctx,
     unsigned char ch = diff;
     if (mode == SM4_ENCRYPT)
     {
-        for (int i = 0; i < diff; i++)
+        int i = 0
+        for (; i < diff; i++)
         {
             input[length + i] = diff;
         }
+        length = length + i;
     }
-    length = length + i;
+    
     while (length > 0)
     {
         sm4_one_round(ctx->sk, input, output);
