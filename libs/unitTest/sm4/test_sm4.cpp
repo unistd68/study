@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-16 17:27:52
- * @LastEditTime: 2021-10-22 00:03:36
+ * @LastEditTime: 2021-10-22 00:18:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\sm4\TestSM4\test_sm4.cpp
@@ -39,23 +39,26 @@ void testSM4Encrypto()
 
 void testSM4Decrypto()
 {
-    // const char *key = "1234567890abcdef";
-    // const char *in = "551EB5F76082DF027FE1F4E977234F0EFEE56A0820792CBE0605005C0A62F9C78B9FFC795CD1A0B6DD55073C2326E8CE1D7D2755550AA81E3CC9CD9DBCE723C4";
+    const char *key = "1234567890abcdef";
+    const char *in = "0BD0ACF48DE5DEA641191D1426CAE9BD";
     char out[1024] = {0};
-    SM4Decrypto(key, encrpto_data, out);
-    if(strcmp(plain_in_hex,out) == 0)
-    {
-        printf(" ### testSM4Decrypto ### test ok\n");
-    }
-    else
-    {
-        printf(" ### testSM4Decrypto ### test fail\n");
-    }
+    SM4Decrypto(key, in, out);
+    printf("key: %s\n",key);
+    printf("in: %s\n",in);
+    printf("out: %s\n",out);
+    // if(strcmp(plain_in_hex,out) == 0)
+    // {
+    //     printf(" ### testSM4Decrypto ### test ok\n");
+    // }
+    // else
+    // {
+    //     printf(" ### testSM4Decrypto ### test fail\n");
+    // }
 }
 
 int main(char *argv[],int argc)
 {
     testSM4Encrypto();
-    //testSM4Decrypto();
+    testSM4Decrypto();
     return 0;
 }
