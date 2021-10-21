@@ -1,7 +1,7 @@
 /*
 * @Author: your name
 * @Date: 2021-10-16 17:29:00
- * @LastEditTime: 2021-10-21 23:35:34
+ * @LastEditTime: 2021-10-22 00:07:48
  * @LastEditors: Please set LastEditors
 * @Description: In User Settings Edit
 * @FilePath: \dubbo-goe:\code\study\tools\com_tools.h
@@ -63,9 +63,7 @@ int ascii2HexArray(const char *in, int len, unsigned char *out)
         tmpOut[j] = alTmp[in[i] / 16];
         tmpOut[j + 1] = alTmp[in[i] % 16];
     }
-    // printf("len: %d\n", len);
-    // printf("tmpOut: %s", tmpOut);
-    // printf("\n");
+
     char *p = tmpOut;
     char high = 0, low = 0;
     int tmplen = strlen(p), cnt = 0;

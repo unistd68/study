@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-16 17:25:29
- * @LastEditTime: 2021-10-16 17:25:30
+ * @LastEditTime: 2021-10-22 00:15:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\sm4\sm4.cpp
@@ -279,31 +279,33 @@ void sm4_crypt_cbc(sm4_context *ctx,
  */
 int SM4Encrypto(const char *key, const char *in, char *out)
 {
-    printf("key : %s\n",key);
+    printf("key : %s\n", key);
     unsigned char arrKey[1024] = {0};
     unsigned char arrIn[1024] = {0};
     unsigned char tmp[1024] = {0};
     int len_key = ascii2HexArray(key, strlen(key), arrKey);
     int len_in = ascii2HexArray(in, strlen(in), arrIn);
     printf("加密前 arrIn :\n");
-    for(int i=0;i<len_in;i++)
+    for (int i = 0; i < len_in; i++)
     {
-        printf("%02X",arrIn[i]);
+        printf("%02X", arrIn[i]);
     }
     printf("\n");
     sm4_context ctx;
-    sm4_setkey_enc(&ctx,arrKey);
-    sm4_crypt_ecb(&ctx,1,128,arrIn,tmp);
-    hexArr2String(tmp,128,out);
+    int line = len_in % 16 == 0 ? len_in / 16 : len_in / 16 + 1;
+    int len_out = line * 16;
+    sm4_setkey_enc(&ctx, arrKey);
+    sm4_crypt_ecb(&ctx, 1, len_in, arrIn, tmp);
+    hexArr2String(tmp, len_out, out);
     printf("加密后 tmp :\n");
-    for(int i=0;i<128;i++)
+    for (int i = 0; i < len_out; i++)
     {
-        printf("%02X ",tmp[i]);
+        printf("%02X ", tmp[i]);
     }
     printf("\n");
-    printf("## SM4Encrypto ## [key] %s \n",key);
-    printf("## SM4Encrypto ## [in] %s \n",in);
-    printf("## SM4Encrypto ## [out] %s \n",out);
+    printf("## SM4Encrypto ## [key] %s \n", key);
+    printf("## SM4Encrypto ## [in] %s \n", in);
+    printf("## SM4Encrypto ## [out] %s \n", out);
     return 0;
 }
 
@@ -318,18 +320,18 @@ int SM4Decrypto(const char *key, const char *in, char *out)
 {
     unsigned char arrKey[1024] = {0};
     unsigned char arrIn[1024] = {0};
-    
+
     unsigned char tmp[1024] = {0};
     int len_key = ascii2HexArray(key, strlen(key), arrKey);
     int len_in = ascii2HexArray(in, strlen(in), arrIn);
     sm4_context ctx;
-    sm4_setkey_dec(&ctx,arrKey);
-    sm4_crypt_ecb(&ctx,0,128,arrIn,tmp);
-    hexArr2String(tmp,128,out);
-    sprintf(out,"%s",tmp);
-    printf("## SM4Encrypto ## [key] %s \n",key);
-    printf("## SM4Encrypto ## [in] %s \n",in);
-    printf("## SM4Encrypto ## [out] %s \n",out);
+    sm4_setkey_dec(&ctx, arrKey);
+    sm4_crypt_ecb(&ctx, 0, 128, arrIn, tmp);
+    hexArr2String(tmp, 128, out);
+    sprintf(out, "%s", tmp);
+    printf("## SM4Encrypto ## [key] %s \n", key);
+    printf("## SM4Encrypto ## [in] %s \n", in);
+    printf("## SM4Encrypto ## [out] %s \n", out);
     return 0;
 }
 
