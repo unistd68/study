@@ -20,8 +20,8 @@ const char* encrpto_data = "C3A6D7F25CD94E43525A8DEFA20B7F5DBCAFF7DFD1AF14E08386
 void testSM4Encrypto()
 {
     const char *key = "1234567890abcdef";
-    //const char *in = "{\"name\":\"张三\",\"age\":\"18\",\"sex\":\"male\"}";
-    const char *in = "wqetwdadada";
+    const char *in = "{\"name\":\"张三\",\"age\":\"18\",\"sex\":\"male\"}";
+    //const char *in = "wqetwdadada";
     char out[1024] = {0};
     SM4Encrypto(key, in, out);
     printf("key: %s\n",key);
