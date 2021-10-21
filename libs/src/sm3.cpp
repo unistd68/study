@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-21 20:02:56
- * @LastEditTime: 2021-10-21 21:18:21
+ * @LastEditTime: 2021-10-21 21:33:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\libs\src\sm3.c
@@ -250,7 +250,7 @@ int sm3_str_summ(unsigned char *str, unsigned char *summ, int len)
     return 0;
 }
 
-int GetSM3String(unsigned char* in,int len,unsigned char* out)
+int ASCII2SM3(unsigned char* in,int len,unsigned char* out)
 {
     unsigned char temp[1024] = {0};
     ascii2HexArray(in,strlen(in),temp);
@@ -260,20 +260,20 @@ int GetSM3String(unsigned char* in,int len,unsigned char* out)
     print_str(out, 32);
 }
 
-// int GetSM3String(unsigned char* in,int len,unsigned char* out)
-// {
-//     len = sm3_pad_message(in, len);
+int HEX2SM3(unsigned char* in,int len,unsigned char* out)
+{
+    len = sm3_pad_message(in, len);
 
-//     //print_str(str, len);
+    //print_str(str, len);
 
-//     len = sm3_str_group(in, len);
+    len = sm3_str_group(in, len);
 
-//     //print_str(str, len);
+    //print_str(str, len);
 
-//     sm3_str_summ(in, out, len);
+    sm3_str_summ(in, out, len);
 
-//     //print_str(str, len);
+    //print_str(str, len);
 
-//     print_str(out, 32);
-//     return 0;
-// }
+    print_str(out, 32);
+    return 0;
+}

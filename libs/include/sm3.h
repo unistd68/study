@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-21 20:02:36
- * @LastEditTime: 2021-10-21 20:22:34
+ * @LastEditTime: 2021-10-21 21:36:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\libs\include\sm3.h
@@ -31,7 +31,8 @@
 #define TT2(e,f,g,a,b,c,d) ((e)+(f)+SS1(a,b,c,d)+(g))
 
 
-int GetSM3String(unsigned char* in,int len,unsigned char* out);
+int ASCII2SM3(unsigned char* in,int len,unsigned char* out);
+int HEX2SM3(unsigned char* in,int len,unsigned char* out);
 
 
 #endif
