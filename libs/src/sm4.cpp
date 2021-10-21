@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-16 17:25:29
- * @LastEditTime: 2021-10-22 00:39:54
+ * @LastEditTime: 2021-10-22 00:42:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\sm4\sm4.cpp
@@ -316,7 +316,7 @@ int SM4Encrypto(const char *key, const unsigned char *in, char *out)
  * @param {char} *out： ascii字符串，如： {\"code\":\"00000\",\"Msg\":\"成功\"}"
  * @return {*}
  */
-int SM4Decrypto(const char *key, const char *in, char *out)
+int SM4Decrypto(const char *key, const char *in, unsigned char *out)
 {
     unsigned char arrKey[1024] = {0};
     unsigned char arrIn[1024] = {0};
