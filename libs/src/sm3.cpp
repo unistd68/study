@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-21 20:02:56
- * @LastEditTime: 2021-10-21 23:44:07
+ * @LastEditTime: 2021-10-21 23:47:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\libs\src\sm3.c
@@ -313,7 +313,7 @@ static int32_t show_hex(int8_t *title, void *buf, uint32_t total)
 int ASCII2SM3(unsigned char *in, int len, unsigned char *out)
 {
     unsigned char temp[1024] = {0};
-    int len = ascii2HexArray(in, strlen(in), temp);
+    len = ascii2HexArray(in, len, temp);
     uint8_t buf[64];
 
     sm3_proc(temp, len, buf);
