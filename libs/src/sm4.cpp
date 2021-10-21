@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-16 17:25:29
- * @LastEditTime: 2021-10-22 00:21:00
+ * @LastEditTime: 2021-10-22 00:37:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\sm4\sm4.cpp
@@ -302,7 +302,7 @@ int SM4Encrypto(const char *key, const char *in, char *out)
     // {
     //     printf("%02X ", tmp[i]);
     // }
-    printf("\n");
+    //printf("\n");
     // printf("## SM4Encrypto ## [key] %s \n", key);
     // printf("## SM4Encrypto ## [in] %s \n", in);
     // printf("## SM4Encrypto ## [out] %s \n", out);
@@ -323,11 +323,11 @@ int SM4Decrypto(const char *key, const char *in, char *out)
 
     unsigned char tmp[1024] = {0};
     int len_key = ascii2HexArray(key, strlen(key), arrKey);
-    int len_in = ascii2HexArray(in, strlen(in), arrIn);
+    int len_in = hex2Array(in, arrIn);
     sm4_context ctx;
     sm4_setkey_dec(&ctx, arrKey);
-    sm4_crypt_ecb(&ctx, 0, 128, arrIn, tmp);
-    hexArr2String(tmp, 128, out);
+    sm4_crypt_ecb(&ctx, 0, len_in, arrIn, tmp);
+    hexArr2String(tmp, len_in, out);
     sprintf(out, "%s", tmp);
     // printf("## SM4Encrypto ## [key] %s \n", key);
     // printf("## SM4Encrypto ## [in] %s \n", in);

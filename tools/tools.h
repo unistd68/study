@@ -1,7 +1,7 @@
 /*
 * @Author: your name
 * @Date: 2021-10-16 17:29:00
- * @LastEditTime: 2021-10-22 00:07:48
+ * @LastEditTime: 2021-10-22 00:33:25
  * @LastEditors: Please set LastEditors
 * @Description: In User Settings Edit
 * @FilePath: \dubbo-goe:\code\study\tools\com_tools.h
@@ -94,10 +94,6 @@ int hexArr2String(unsigned char *in, int len, char *out)
     for (i = 0, j = i; i < len; i++, j += 2)
     {
         index++;
-        if (in[i] == 0x00)
-        {
-            index--;
-        }
         sprintf(pbuf, "%02X", in[i]);
         strncat(strBuf + j, pbuf, 2);
     }
