@@ -1,7 +1,7 @@
 /*
 * @Author: your name
 * @Date: 2021-10-16 17:29:00
- * @LastEditTime: 2021-10-21 21:25:06
+ * @LastEditTime: 2021-10-21 23:35:34
  * @LastEditors: Please set LastEditors
 * @Description: In User Settings Edit
 * @FilePath: \dubbo-goe:\code\study\tools\com_tools.h
@@ -164,7 +164,6 @@ static int get_timestamp()
     p = localtime(&timep); /*转换为本地的tm结构的时间按*/
     timep = mktime(p);
     return timep;
-
 
     // time_t myt = time(NULL);
     // time_t t;

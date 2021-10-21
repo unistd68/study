@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-21 20:02:56
- * @LastEditTime: 2021-10-21 21:33:46
+ * @LastEditTime: 2021-10-21 23:38:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\libs\src\sm3.c
@@ -10,257 +10,317 @@
 #include "sm3.h"
 #include "../tools/tools.h"
 
-unsigned long H[8] = {0x7380166f, 0x4914b2b9, 0x172442d7, 0xda8a0600, 0xa96f30bc, 0x163138aa, 0xe38dee4d, 0xb0fb0e4e};
+#define SM3_BLOCK_SIZE (64)
 
-int print_str(unsigned char *str, int len)
+typedef struct
 {
-    int i = 0;
+    /*!< number of bytes processed  */
+    uint32_t total[2];
 
-    printf("str=[");
+    /*!< int32_termediate digest state  */
+    uint32_t state[8];
 
-    for (i = 0; i < len; i++)
+    /*!< data block being processed */
+    uint8_t buffer[SM3_BLOCK_SIZE];
+
+    /*!< HMAC: inner padding        */
+    uint8_t ipad[SM3_BLOCK_SIZE];
+
+    /*!< HMAC: outer padding        */
+    uint8_t opad[SM3_BLOCK_SIZE];
+
+} sm3_ctx_t;
+
+#define FF0(x, y, z) ((x) ^ (y) ^ (z))
+#define FF1(x, y, z) (((x) & (y)) | ((x) & (z)) | ((y) & (z)))
+
+#define GG0(x, y, z) ((x) ^ (y) ^ (z))
+#define GG1(x, y, z) (((x) & (y)) | ((~(x)) & (z)))
+
+#define SHL(x, n) (((x)&0xFFFFFFFF) << n)
+#define ROTL(x, n) (SHL((x), n) | ((x) >> (32 - n)))
+
+#define P0(x) ((x) ^ ROTL((x), 9) ^ ROTL((x), 17))
+#define P1(x) ((x) ^ ROTL((x), 15) ^ ROTL((x), 23))
+
+static inline uint32_t load_u32_be(const uint8_t *b)
+{
+    return b[0] << 24 | b[1] << 16 | b[2] << 8 | b[3];
+}
+
+static inline void store_u32_be(uint32_t v, uint8_t *b)
+{
+    b[0] = (uint8_t)(v >> 24);
+    b[1] = (uint8_t)(v >> 16);
+    b[2] = (uint8_t)(v >> 8);
+    b[3] = (uint8_t)(v);
+}
+
+static void sm3_process(sm3_ctx_t *ctx, uint8_t *data)
+{
+    uint32_t SS1, SS2, TT1, TT2, w[68], w1[SM3_BLOCK_SIZE];
+    uint32_t A, B, C, D, E, F, G, H;
+    uint32_t t[SM3_BLOCK_SIZE];
+    uint32_t temp1, temp2, temp3, temp4, temp5;
+    int32_t i, j;
+
+    for (j = 0; j < 16; j++)
     {
-        printf("%02X", str[i]);
+        t[j] = 0x79CC4519;
     }
 
-    printf("], len=[%d]\n", len);
-
-    return 0;
-}
-
-int sm3_long_to_str(unsigned long a, unsigned char *b)
-{
-    unsigned long x = a;
-    unsigned char *d = (unsigned char *)&x;
-
-    b[0] = d[3];
-    b[1] = d[2];
-    b[2] = d[1];
-    b[3] = d[0];
-
-    return 0;
-}
-
-unsigned long sm3_str_to_long(unsigned char *a)
-{
-    unsigned long x = 0;
-    unsigned char *b = (unsigned char *)&x;
-
-    b[0] = a[3];
-    b[1] = a[2];
-    b[2] = a[1];
-    b[3] = a[0];
-
-    return x;
-}
-
-int sm3_pad_message(unsigned char *str, int len)
-{
-    unsigned long high, low;
-    int u = len % 64;
-
-    high = 0;
-    low = len * 8;
-
-    if (u < 56)
+    for (j = 16; j < SM3_BLOCK_SIZE; j++)
     {
-        str[len++] = 0x80;
-        u++;
-
-        while (u < 56)
-        {
-            str[len++] = 0x00;
-            u++;
-        }
-    }
-    else if (u > 56)
-    {
-        str[len++] = 0x80;
-        u++;
-
-        while (u < 56 + 64)
-        {
-            str[len++] = 0x00;
-            u++;
-        }
+        t[j] = 0x7A879D8A;
     }
 
-    //printf("len=[%08x]\n", low);
-
-    str[len++] = high >> 24;
-    str[len++] = high >> 16;
-    str[len++] = high >> 8;
-    str[len++] = high;
-    str[len++] = low >> 24;
-    str[len++] = low >> 16;
-    str[len++] = low >> 8;
-    str[len++] = low;
-
-    return len;
-}
-
-int sm3_group_a(unsigned char *a, unsigned char *b, unsigned char *c, unsigned char *d, unsigned char *e, unsigned char *f)
-{
-    unsigned long x[6] = {0};
-
-    x[0] = sm3_str_to_long(a);
-    x[1] = sm3_str_to_long(b);
-    x[2] = sm3_str_to_long(c);
-    x[3] = sm3_str_to_long(d);
-    x[4] = sm3_str_to_long(e);
-    x[5] = P1(x[0], x[1], x[2], x[3], x[4]);
-
-    sm3_long_to_str(x[5], f);
-
-    return 0;
-}
-
-int sm3_group_b(unsigned char *a, unsigned char *b, unsigned char *c)
-{
-    unsigned long x[3] = {0};
-
-    x[0] = sm3_str_to_long(a);
-    x[1] = sm3_str_to_long(b);
-    x[2] = P3(x[0], x[1]);
-
-    sm3_long_to_str(x[2], c);
-
-    return 0;
-}
-
-int sm3_str_group(unsigned char *str, int len)
-{
-    unsigned char M[64];
-    unsigned char W[68][4];
-    int u = len / 64;
-    int v = 64 / 16 * 64 * 2;
-    int i = 0;
-    int j = 0;
-
-    for (i = u - 1; i >= 0; i--)
+    for (j = 0, i = 0; j < 16; j++, i += 4)
     {
-        memset(M, 0x00, sizeof(M));
-
-        memcpy(M, str + i * 64, 64);
-
-        for (j = 0; j < 16; j++)
-        {
-            memcpy(W[j], M + 4 * j, 4);
-        }
-
-        for (j = 16; j < 68; j++)
-        {
-            sm3_group_a(W[j - 16], W[j - 9], W[j - 3], W[j - 13], W[j - 6], W[j]);
-        }
-
-        memset(M, 0x00, sizeof(M));
-
-        for (j = 0; j < 64; j++)
-        {
-            sm3_group_b(W[j], W[j + 4], M);
-            memcpy(str + i * v + 8 * j, W[j], 4);
-            memcpy(str + i * v + 8 * j + 4, M, 4);
-        }
+        w[j] = load_u32_be(data + i);
     }
 
-    return u * v;
-}
-
-int sm3_str_summ(unsigned char *str, unsigned char *summ, int len)
-{
-    unsigned char W[128][4];
-    unsigned long A[8] = {0};
-    unsigned long B[8] = {0};
-    unsigned long C[8] = {0};
-    int u = len / 512;
-    int i = 0;
-    int j = 0;
-
-    memcpy(B, H, sizeof(B));
-
-    for (i = 0; i < u; i++)
+    for (j = 16; j < 68; j++)
     {
-        for (j = 0; j < 128; j++)
-        {
-            memcpy(W[j], str + i * 512 + j * 4, 4);
-        }
-
-        A[0] = B[0];
-        A[1] = B[1];
-        A[2] = B[2];
-        A[3] = B[3];
-        A[4] = B[4];
-        A[5] = B[5];
-        A[6] = B[6];
-        A[7] = B[7];
-
-        for (j = 0; j < 16; j++)
-        {
-            C[0] = sm3_str_to_long(W[2 * j + 1]);
-            C[1] = sm3_str_to_long(W[2 * j]);
-            C[2] = TT1(FF1(A[0], A[1], A[2]), A[3], C[0], A[0], A[4], T1, j);
-            C[3] = TT2(GG1(A[4], A[5], A[6]), A[7], C[1], A[0], A[4], T1, j);
-            A[7] = A[6];
-            A[6] = ROTL(A[5], 19);
-            A[5] = A[4];
-            A[4] = P4(C[3]);
-            A[3] = A[2];
-            A[2] = ROTL(A[1], 9);
-            A[1] = A[0];
-            A[0] = C[2];
-        }
-
-        for (j = 16; j < 64; j++)
-        {
-            C[0] = sm3_str_to_long(W[2 * j + 1]);
-            C[1] = sm3_str_to_long(W[2 * j]);
-            C[2] = TT1(FF2(A[0], A[1], A[2]), A[3], C[0], A[0], A[4], T2, j);
-            C[3] = TT2(GG2(A[4], A[5], A[6]), A[7], C[1], A[0], A[4], T2, j);
-            A[7] = A[6];
-            A[6] = ROTL(A[5], 19);
-            A[5] = A[4];
-            A[4] = P4(C[3]);
-            A[3] = A[2];
-            A[2] = ROTL(A[1], 9);
-            A[1] = A[0];
-            A[0] = C[2];
-
-            //printf("A[0]=[%08X]\n", A[0]);
-        }
-
-        B[0] ^= A[0];
-        B[1] ^= A[1];
-        B[2] ^= A[2];
-        B[3] ^= A[3];
-        B[4] ^= A[4];
-        B[5] ^= A[5];
-        B[6] ^= A[6];
-        B[7] ^= A[7];
+        temp1 = w[j - 16] ^ w[j - 9];
+        temp2 = ROTL(w[j - 3], 15);
+        temp3 = temp1 ^ temp2;
+        temp4 = P1(temp3);
+        temp5 = ROTL(w[j - 13], 7) ^ w[j - 6];
+        w[j] = temp4 ^ temp5;
     }
 
-    sm3_long_to_str(B[0], summ);
-    sm3_long_to_str(B[1], summ + 4);
-    sm3_long_to_str(B[2], summ + 8);
-    sm3_long_to_str(B[3], summ + 12);
-    sm3_long_to_str(B[4], summ + 16);
-    sm3_long_to_str(B[5], summ + 20);
-    sm3_long_to_str(B[6], summ + 24);
-    sm3_long_to_str(B[7], summ + 28);
+    for (j = 0; j < SM3_BLOCK_SIZE; j++)
+    {
+        w1[j] = w[j] ^ w[j + 4];
+    }
 
-    return 0;
+    A = ctx->state[0];
+    B = ctx->state[1];
+    C = ctx->state[2];
+    D = ctx->state[3];
+    E = ctx->state[4];
+    F = ctx->state[5];
+    G = ctx->state[6];
+    H = ctx->state[7];
+
+    for (j = 0; j < 16; j++)
+    {
+        SS1 = ROTL((ROTL(A, 12) + E + ROTL(t[j], j)), 7);
+        SS2 = SS1 ^ ROTL(A, 12);
+        TT1 = FF0(A, B, C) + D + SS2 + w1[j];
+        TT2 = GG0(E, F, G) + H + SS1 + w[j];
+        D = C;
+        C = ROTL(B, 9);
+        B = A;
+        A = TT1;
+        H = G;
+        G = ROTL(F, 19);
+        F = E;
+        E = P0(TT2);
+    }
+
+    for (j = 16; j < SM3_BLOCK_SIZE; j++)
+    {
+        SS1 = ROTL((ROTL(A, 12) + E + ROTL(t[j], j)), 7);
+        SS2 = SS1 ^ ROTL(A, 12);
+        TT1 = FF1(A, B, C) + D + SS2 + w1[j];
+        TT2 = GG1(E, F, G) + H + SS1 + w[j];
+        D = C;
+        C = ROTL(B, 9);
+        B = A;
+        A = TT1;
+        H = G;
+        G = ROTL(F, 19);
+        F = E;
+        E = P0(TT2);
+    }
+
+    ctx->state[0] ^= A;
+    ctx->state[1] ^= B;
+    ctx->state[2] ^= C;
+    ctx->state[3] ^= D;
+    ctx->state[4] ^= E;
+    ctx->state[5] ^= F;
+    ctx->state[6] ^= G;
+    ctx->state[7] ^= H;
 }
 
-int ASCII2SM3(unsigned char* in,int len,unsigned char* out)
+static void sm3_update(sm3_ctx_t *ctx, uint8_t *input, uint32_t ilen)
+{
+    uint32_t fill;
+    uint32_t left;
+
+    if (ilen <= 0)
+    {
+        return;
+    }
+
+    left = ctx->total[0] & 0x3F;
+    fill = SM3_BLOCK_SIZE - left;
+
+    ctx->total[0] += ilen;
+    ctx->total[0] &= 0xFFFFFFFF;
+
+    if (ctx->total[0] < ilen)
+    {
+        ctx->total[1]++;
+    }
+
+    if (left && ilen >= fill)
+    {
+        memcpy(ctx->buffer + left, input, fill);
+        sm3_process(ctx, ctx->buffer);
+        input += fill;
+        ilen -= fill;
+        left = 0;
+    }
+
+    while (ilen >= SM3_BLOCK_SIZE)
+    {
+        sm3_process(ctx, input);
+        input += SM3_BLOCK_SIZE;
+        ilen -= SM3_BLOCK_SIZE;
+    }
+
+    if (ilen > 0)
+    {
+        memcpy(ctx->buffer + left, input, ilen);
+    }
+}
+
+static uint8_t sm3_padding[SM3_BLOCK_SIZE] =
+    {
+        0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+static void sm3_finish(sm3_ctx_t *ctx, uint8_t *output)
+{
+    uint32_t last, padn;
+    uint32_t high, low, idx;
+    uint8_t msglen[8];
+
+    high = (ctx->total[0] >> 29) | (ctx->total[1] << 3);
+    low = ctx->total[0] << 3;
+
+    store_u32_be(high, msglen);
+    store_u32_be(low, msglen + 4);
+
+    last = ctx->total[0] & 0x3F;
+    padn = last < 56 ? 56 - last : 120 - last;
+
+    sm3_update(ctx, sm3_padding, padn);
+    sm3_update(ctx, msglen, 8);
+
+    for (idx = 0; idx < 8; idx++, output += 4)
+    {
+        store_u32_be(ctx->state[idx], output);
+    }
+}
+
+static void sm3_starts(sm3_ctx_t *ctx)
+{
+    ctx->total[0] = 0;
+    ctx->total[1] = 0;
+
+    ctx->state[0] = 0x7380166F;
+    ctx->state[1] = 0x4914B2B9;
+    ctx->state[2] = 0x172442D7;
+    ctx->state[3] = 0xDA8A0600;
+    ctx->state[4] = 0xA96F30BC;
+    ctx->state[5] = 0x163138AA;
+    ctx->state[6] = 0xE38DEE4D;
+    ctx->state[7] = 0xB0FB0E4E;
+}
+
+void sm3_proc(uint8_t *input, int32_t ilen, uint8_t *output)
+{
+    sm3_ctx_t ctx;
+
+    sm3_starts(&ctx);
+    sm3_update(&ctx, input, ilen);
+    sm3_finish(&ctx, output);
+}
+
+static void sm3_hmac_starts(sm3_ctx_t *ctx, uint8_t *key, int32_t keylen)
+{
+    int32_t i;
+    uint8_t sum[32];
+
+    if (keylen > SM3_BLOCK_SIZE)
+    {
+        sm3_proc(key, keylen, sum);
+        keylen = 32;
+        key = sum;
+    }
+
+    memset(ctx->ipad, 0x36, SM3_BLOCK_SIZE);
+    memset(ctx->opad, 0x5C, SM3_BLOCK_SIZE);
+
+    for (i = 0; i < keylen; i++)
+    {
+        ctx->ipad[i] = ctx->ipad[i] ^ key[i];
+        ctx->opad[i] = ctx->opad[i] ^ key[i];
+    }
+
+    sm3_starts(ctx);
+    sm3_update(ctx, ctx->ipad, SM3_BLOCK_SIZE);
+}
+
+static void sm3_hmac_update(sm3_ctx_t *ctx, uint8_t *input, int32_t ilen)
+{
+    sm3_update(ctx, input, ilen);
+}
+
+static void sm3_hmac_finish(sm3_ctx_t *ctx, uint8_t *output)
+{
+    int32_t hlen = 32;
+    uint8_t tmpbuf[32];
+
+    sm3_finish(ctx, tmpbuf);
+    sm3_starts(ctx);
+    sm3_update(ctx, ctx->opad, SM3_BLOCK_SIZE);
+    sm3_update(ctx, tmpbuf, hlen);
+    sm3_finish(ctx, output);
+}
+
+void sm3_hmac(uint8_t *key, int32_t keylen, uint8_t *input, int32_t ilen, uint8_t *output)
+{
+    sm3_ctx_t ctx;
+
+    sm3_hmac_starts(&ctx, key, keylen);
+    sm3_hmac_update(&ctx, input, ilen);
+    sm3_hmac_finish(&ctx, output);
+}
+
+static int32_t show_hex(int8_t* title, void* buf, uint32_t total)
+{
+	uint32_t idx;
+	uint8_t* data = buf;
+
+	printf("%s(%d):\n\t", title, total);
+	for (idx = 0; idx < total; idx++) {
+		printf("%02hhx", data[idx]);
+		printf("%s", 15 == (idx & 15) ? "\n\t" : ", ");
+	}
+	printf("\n");
+	
+	return 0;
+}
+
+int ASCII2SM3(unsigned char *in, int len, unsigned char *out)
 {
     unsigned char temp[1024] = {0};
-    ascii2HexArray(in,strlen(in),temp);
-    len = sm3_pad_message(temp, len);
-    len = sm3_str_group(temp, len);
-    sm3_str_summ(temp, out, len);
-    print_str(out, 32);
+    int len = ascii2HexArray(in, strlen(in), temp);
+    uint8_t buf[64];
+
+    sm3_proc(temp, len, buf);
+    show_hex("data", td, sizeof(td));
+    show_hex("buf", buf, 32);
 }
 
-int HEX2SM3(unsigned char* in,int len,unsigned char* out)
+int HEX2SM3(unsigned char *in, int len, unsigned char *out)
 {
     len = sm3_pad_message(in, len);
 
