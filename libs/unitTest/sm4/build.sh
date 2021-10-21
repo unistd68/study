@@ -1,7 +1,7 @@
 ###
 # @Author: xtcgch
 # @Date: 2021-10-03 16:16:54
- # @LastEditTime: 2021-10-21 21:23:02
+ # @LastEditTime: 2021-10-21 21:38:31
  # @LastEditors: Please set LastEditors
 # @Description: In User Settings Edit
 # @FilePath: \dubbo-goe:\code\study\sm4\TestSM4\Makefile
@@ -42,6 +42,7 @@ build_sm3_test() {
     valgrind --leak-check=full --show-reachable=yes --trace-children=yes --log-file=log_test_sm3.log --time-stamp=yes ./test_sm3
 
 }
+
 
 show_help() {
     echo " ################################################# "
