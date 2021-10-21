@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-21 20:02:36
- * @LastEditTime: 2021-10-21 23:34:06
+ * @LastEditTime: 2021-10-21 23:42:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\libs\include\sm3.h
@@ -9,7 +9,7 @@
 #pragma once
 #ifndef _BASE_SM3_H_
 #define _BASE_SM3_H_
-
+#include "includes.h"
 /**
  * desc          Output = SM3( input buffer )
  *
