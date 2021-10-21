@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-16 17:25:19
- * @LastEditTime: 2021-10-16 17:44:16
+ * @LastEditTime: 2021-10-21 20:15:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\sm4\sm4.h
@@ -10,7 +10,7 @@
 #ifndef _SM4_H_
 #define _SM4_H_
 
-#include "../includes/includes.h"
+#include "includes.h"
 
 
 #define SM4_ENCRYPT 1
