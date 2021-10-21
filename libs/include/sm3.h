@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-21 20:02:36
- * @LastEditTime: 2021-10-21 23:42:34
+ * @LastEditTime: 2021-10-21 23:44:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\libs\include\sm3.h
@@ -31,6 +31,5 @@ void sm3_proc(uint8_t *input, int32_t ilen, uint8_t *output);
 void sm3_hmac(uint8_t *key, int32_t keylen, uint8_t *input, int32_t ilen, uint8_t *output);
 
 int ASCII2SM3(unsigned char *in, int len, unsigned char *out);
-int HEX2SM3(unsigned char *in, int len, unsigned char *out);
 
 #endif

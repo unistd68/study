@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-21 20:02:56
- * @LastEditTime: 2021-10-21 23:38:42
+ * @LastEditTime: 2021-10-21 23:44:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\libs\src\sm3.c
@@ -294,19 +294,20 @@ void sm3_hmac(uint8_t *key, int32_t keylen, uint8_t *input, int32_t ilen, uint8_
     sm3_hmac_finish(&ctx, output);
 }
 
-static int32_t show_hex(int8_t* title, void* buf, uint32_t total)
+static int32_t show_hex(int8_t *title, void *buf, uint32_t total)
 {
-	uint32_t idx;
-	uint8_t* data = buf;
+    uint32_t idx;
+    uint8_t *data = buf;
 
-	printf("%s(%d):\n\t", title, total);
-	for (idx = 0; idx < total; idx++) {
-		printf("%02hhx", data[idx]);
-		printf("%s", 15 == (idx & 15) ? "\n\t" : ", ");
-	}
-	printf("\n");
-	
-	return 0;
+    printf("%s(%d):\n\t", title, total);
+    for (idx = 0; idx < total; idx++)
+    {
+        printf("%02hhx", data[idx]);
+        printf("%s", 15 == (idx & 15) ? "\n\t" : ", ");
+    }
+    printf("\n");
+
+    return 0;
 }
 
 int ASCII2SM3(unsigned char *in, int len, unsigned char *out)
@@ -316,24 +317,6 @@ int ASCII2SM3(unsigned char *in, int len, unsigned char *out)
     uint8_t buf[64];
 
     sm3_proc(temp, len, buf);
-    show_hex("data", td, sizeof(td));
+    show_hex("data", temp, len);
     show_hex("buf", buf, 32);
-}
-
-int HEX2SM3(unsigned char *in, int len, unsigned char *out)
-{
-    len = sm3_pad_message(in, len);
-
-    //print_str(str, len);
-
-    len = sm3_str_group(in, len);
-
-    //print_str(str, len);
-
-    sm3_str_summ(in, out, len);
-
-    //print_str(str, len);
-
-    print_str(out, 32);
-    return 0;
 }
