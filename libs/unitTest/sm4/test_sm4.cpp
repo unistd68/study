@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-10-16 17:27:52
- * @LastEditTime: 2021-10-22 00:40:32
+ * @LastEditTime: 2021-10-22 01:13:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\code\study\sm4\TestSM4\test_sm4.cpp
@@ -40,7 +40,7 @@ void testSM4Encrypto()
 void testSM4Decrypto()
 {
     const char *key = "1234567890abcdef";
-    const char *in = "0BD0ACF48DE5DEA641191D1426CAE9BD";
+    const char *in = "82ADED14217761441B4F1BFE1E26390700FC5D1E4E85D24D5AB44B8FF4AD01FA5C6DEBCDE27E6B9DAF6A705C8ED72FAD";
     char out[1024] = {0};
     SM4Decrypto(key, in, out);
     printf("## SM4DEcrypto ## [key] %s \n", key);
