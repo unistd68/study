@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-11-08 09:56:58
- * @LastEditTime: 2021-11-08 14:45:05
+ * @LastEditTime: 2021-11-08 14:49:23
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \dubbo-goe:\other\vshare\test\golang\gin\main.go
@@ -60,5 +60,6 @@
 	if err := r.Run(":8888"); err != nil {
 		fmt.Println(" startup service failed, err:%v\n", err)
 	}
+	fmt.Println(" service exit\n")
 }
 
