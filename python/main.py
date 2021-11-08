@@ -27,15 +27,15 @@ def get_config_info(file_path,db_alias):
     db_info[db_alias_User] = cf.get(db_alias, db_alias_User)
     db_info[db_alias_Password] = cf.get(db_alias, db_alias_Password)
     db_info[db_alias_CharsetName] = cf.get(db_alias, db_alias_CharsetName)
-    print "########################################################"
-    # print "配置文件数据"
-    print ("db_alias:%s"%(db_alias))
-    print ("db_info[db_alias_IP]:%s"%(db_info[db_alias_IP]))
-    print ("db_info[db_alias_Port]:%s"%(db_info[db_alias_Port]))
-    print ("db_info[db_alias_User]:%s"%(db_info[db_alias_User]))
-    print ("db_info[db_alias_Password]:%s"%(db_info[db_alias_Password]))
-    print ("db_info[db_alias_CharsetName]:%s"%(db_info[db_alias_CharsetName]))
-    print "########################################################"
+    print("########################################################")
+    print("配置文件数据")
+    print("db_alias:%s"%(db_alias))
+    print("db_info[db_alias_IP]:%s"%(db_info[db_alias_IP]))
+    print("db_info[db_alias_Port]:%s"%(db_info[db_alias_Port]))
+    print("db_info[db_alias_User]:%s"%(db_info[db_alias_User]))
+    print("db_info[db_alias_Password]:%s"%(db_info[db_alias_Password]))
+    print("db_info[db_alias_CharsetName]:%s"%(db_info[db_alias_CharsetName]))
+    print("########################################################")
 
 if __name__ == '__main__':
     reload(sys)
