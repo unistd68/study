@@ -1,13 +1,5 @@
-'''
-Author: your name
-Date: 2021-11-08 13:05:21
-LastEditTime: 2021-11-08 13:32:27
-LastEditors: Please set LastEditors
-Description: 
-FilePath: \other\vshare\test\python\main.py
-'''
 #!/usr/bin/python
-# -*- coding: UTF-8 -*-
+#coding=utf-8
 import sys
 import ConfigParser
 
