@@ -8,10 +8,11 @@ import (
 )
 
 func Connect(dbinfo model.DBAuthInfo)  {
-	var url =fmt.Sprintf("%s:%s@(%s:%s)/%s",dbinfo.DBUser,dbinfo.DBPwd,dbinfo.DBHost,dbinfo.DBPort,dbinfo.DBName)
+	var url =fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",dbinfo.DBUser,dbinfo.DBPwd,dbinfo.DBHost,dbinfo.DBPort,dbinfo.DBName)
 	fmt.Println(url)
 
-	db,_:=sql.Open("mysql",string(url)) // 设置连接数据库的参数
+	// db,_:=sql.Open("mysql",string(url)) // 设置连接数据库的参数
+	db,_:=sql.Open("mysql","gch:GCHgch_123456@(127.0.0.1:3306)/test")
     //defer db.Close()    //关闭数据库
     err:=db.Ping()      //连接数据库
     if err!=nil{
