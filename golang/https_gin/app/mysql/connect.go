@@ -7,7 +7,7 @@ import (
 	model "https_gin/app/model"
 )
 
-func connect(dbinfo model.DBAuthInfo)  {
+func Connect(dbinfo model.DBAuthInfo)  {
 	var url =fmt.Sprintf("%s:%s@(%s:%s)/%s",dbinfo.DBUser,dbinfo.DBPwd,dbinfo.DBHost,dbinfo.DBPort,dbinfo.DBName)
 	fmt.Println(url)
 
