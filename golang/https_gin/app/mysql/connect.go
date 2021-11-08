@@ -12,7 +12,7 @@ func Connect(dbinfo model.DBAuthInfo)  {
 	var url =fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",dbinfo.DBUser,dbinfo.DBPwd,dbinfo.DBHost,dbinfo.DBPort,dbinfo.DBName)
 	fmt.Println(url)
 
-	db, _ = sql.Open("mysql", "gch:GCHgch_123456@tcp(127.0.0.1:3306)/test?charset=utf8")
+	db, _:= sql.Open("mysql", "gch:GCHgch_123456@tcp(127.0.0.1:3306)/test?charset=utf8")
     db.SetMaxOpenConns(2000)
     db.SetMaxIdleConns(1000)
     // db.Ping()
