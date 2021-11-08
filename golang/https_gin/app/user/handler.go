@@ -38,5 +38,5 @@ func testjson(c *gin.Context) {
     }
     println(string(buf))
 	fmt.Println(string(buf))
-	c.String(http.StatusOK, buf)
+	c.String(http.StatusOK, string(buf))
 }
