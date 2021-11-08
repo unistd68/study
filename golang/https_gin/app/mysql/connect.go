@@ -12,13 +12,14 @@ func Connect(dbinfo model.DBAuthInfo)  {
 	fmt.Println(url)
 
 	db,_:=sql.Open("mysql",string(url)) // 设置连接数据库的参数
-    defer db.Close()    //关闭数据库
+    //defer db.Close()    //关闭数据库
     err:=db.Ping()      //连接数据库
     if err!=nil{
         fmt.Println("数据库连接失败")
         return
     }
 	fmt.Println("数据库连接成功")
+	db.Close()
 }
 
 func query(){}
