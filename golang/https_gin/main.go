@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-11-08 09:56:58
- * @LastEditTime: 2021-11-08 14:49:23
+ * @LastEditTime: 2021-11-08 15:14:27
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \dubbo-goe:\other\vshare\test\golang\gin\main.go
@@ -9,8 +9,6 @@
  package main
 
  import (
-	 "net/http"
-	 "github.com/gin-gonic/gin"
 	 "fmt"
 	 shop "https_gin/app/shop"
 	 blog "https_gin/app/blog"
