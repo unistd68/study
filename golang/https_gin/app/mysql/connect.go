@@ -10,7 +10,7 @@ import (
 func connect(dbinfo model.DBAuthInfo)  {
 	var url =fmt.Sprintf("%s:%s@(%s:%s)/%s",dbinfo.DBUser,dbinfo.DBPwd,dbinfo.DBHost,dbinfo.DBPort,dbinfo.DBName)
 	fmt.Println(url)
-}
+
 	db,_:=sql.Open("mysql",url) // 设置连接数据库的参数
     defer db.Close()    //关闭数据库
     err:=db.Ping()      //连接数据库
