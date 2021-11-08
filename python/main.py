@@ -2,7 +2,7 @@
 #coding=utf-8
 import sys
 import configparser
-import MySQLdb
+import pymysql
 
 config_path = "./config.ini"
 
@@ -15,9 +15,9 @@ db_alias_CharsetName = "CharsetName"
 
 db_info = {}
 
-def close_db_conn(cursor_obj,posbill_obj):
-    cursor_obj.close()
-    posbill_obj.close()
+def close_db_conn(db_cursor,db_obj):
+    db_cursor.close()
+    db_obj.close()
 
 def get_config_info(file_path,db_alias):
     cf = configparser.ConfigParser()
@@ -41,7 +41,6 @@ if __name__ == '__main__':
     reload(sys)
     sys.setdefaultencoding('utf8') # 设置默认编码格式为'utf-8'
     get_config_info(config_path,"mysql")
-    posbill_pos = MySQLdb.connect(host = db_info[db_alias_IP], port = int(db_info[db_alias_Port]), user = db_info[db_alias_User], passwd = db_info[db_alias_Password], use_unicode = True, charset = db_info[db_alias_CharsetName])
-    cursor_posbill_pos = posbill_pos.cursor()
-    close_db_conn(cursor_posbill_pos,posbill_pos)
-    close_db_conn(cursor_posbill_scan,posbill_scan)
+    db_pos = pymysql.connect(host = db_info[db_alias_IP], port = int(db_info[db_alias_Port]), user = db_info[db_alias_User], passwd = db_info[db_alias_Password], use_unicode = True, charset = db_info[db_alias_CharsetName])
+    db_cursor = db_pos.cursor()
+    close_db_conn(db_cursor,db_pos)
