@@ -2,6 +2,7 @@
 #coding=utf-8
 import sys
 import ConfigParser
+import MySQLdb
 
 config_path = "./config.ini"
 
