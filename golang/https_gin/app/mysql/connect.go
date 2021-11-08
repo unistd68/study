@@ -2,7 +2,8 @@ package db_mysql
 
 import (
 	"fmt"
-    "database/sql"
+    // "database/sql"
+	"github.com/jmoiron/sqlx"
     // "github.com/go-sql-driver/mysql"
 	model "https_gin/app/model"
 )
@@ -12,7 +13,7 @@ func Connect(dbinfo model.DBAuthInfo)  {
 	fmt.Println(url)
 
 	// db,_:=sql.Open("mysql",string(url)) // 设置连接数据库的参数
-	db,_:=sql.Open("mysql","gch:GCHgch_123456@(127.0.0.1:3306)/test")
+	db,_:=sqlx.Open("mysql","gch:GCHgch_123456@tcp(127.0.0.1:3306)/test")
     //defer db.Close()    //关闭数据库
     err:=db.Ping()      //连接数据库
     if err!=nil{
