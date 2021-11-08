@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #coding=utf-8
 import sys
-import ConfigParser
+import configparser
 import MySQLdb
 
 config_path = "./config.ini"
@@ -20,7 +20,7 @@ def close_db_conn(cursor_obj,posbill_obj):
     posbill_obj.close()
 
 def get_config_info(file_path,db_alias):
-    cf = ConfigParser.ConfigParser()
+    cf = configparser.ConfigParser()
     cf.read(file_path)
     db_info[db_alias_IP] = cf.get(db_alias, db_alias_IP)
     db_info[db_alias_Port] = cf.get(db_alias, db_alias_Port)
