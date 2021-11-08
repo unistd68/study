@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 #coding=utf-8
-import sys
+import importlib,sys
+importlib.reload(sys)
 import configparser
 import pymysql
 
@@ -38,8 +39,8 @@ def get_config_info(file_path,db_alias):
     print("########################################################")
 
 if __name__ == '__main__':
-    reload(sys)
-    sys.setdefaultencoding('utf8') # 设置默认编码格式为'utf-8'
+    # reload(sys)
+    # sys.setdefaultencoding('utf8') # 设置默认编码格式为'utf-8'
     get_config_info(config_path,"mysql")
     db_pos = pymysql.connect(host = db_info[db_alias_IP], port = int(db_info[db_alias_Port]), user = db_info[db_alias_User], passwd = db_info[db_alias_Password], use_unicode = True, charset = db_info[db_alias_CharsetName])
     db_cursor = db_pos.cursor()
