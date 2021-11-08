@@ -25,7 +25,7 @@ func user_login(c *gin.Context) {
 }
 
 func testdb(c *gin.Context) {
-	var dbinfo = model.DBAuthInfo{"test","127.0.0.1","3306","root","ROOTroot@123456"};
+	var dbinfo = model.DBAuthInfo{"test","127.0.0.1","3306","gch","GCHgch_123456"};
 	dbmysql.Connect(dbinfo);
 	c.String(http.StatusOK, "testdb success\n")
 
