@@ -13,6 +13,7 @@
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"encoding/json"
+	"net/http"
 
 	model "https_gin/app/model"
 	dbmysql "https_gin/app/mysql"
@@ -30,11 +31,12 @@ func testdb(c *gin.Context) {
 
 }
 
-func testjson() {
-    buf, err := json.Marshal(User{Id: 1, Name: "root",Passwd:"123456"})
+func testjson(c *gin.Context) {
+    buf, err := json.Marshal(model.User{Id: 1, Name: "root",Passwd:"123456"})
     if err != nil {
         panic(err)
     }
     println(string(buf))
+	fmt.Println(string(buf))
 	c.String(http.StatusOK, buf)
 }
