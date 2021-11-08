@@ -1,12 +1,14 @@
 '''
 Author: your name
 Date: 2021-11-08 13:05:21
-LastEditTime: 2021-11-08 13:24:01
+LastEditTime: 2021-11-08 13:27:43
 LastEditors: Please set LastEditors
 Description: 
 FilePath: \other\vshare\test\python\main.py
 '''
-
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+import sys
 import ConfigParser
 
 config_path = "./config.ini"
@@ -45,6 +47,8 @@ def get_config_info(file_path,db_alias):
 
 if __name__ == '__main__':
     #读刷卡清分库
+    reload(sys)
+    sys.setdefaultencoding('utf8') # 设置默认编码格式为'utf-8'
     get_config_info(config_path,"config.properties")
     posbill_pos = MySQLdb.connect(host = db_info[db_alias_IP], port = int(db_info[db_alias_Port]), user = db_info[db_alias_User], passwd = db_info[db_alias_Password], use_unicode = True, charset = db_info[db_alias_CharsetName])
     cursor_posbill_pos = posbill_pos.cursor()
