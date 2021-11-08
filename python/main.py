@@ -1,7 +1,7 @@
 '''
 Author: your name
 Date: 2021-11-08 13:05:21
-LastEditTime: 2021-11-08 13:30:31
+LastEditTime: 2021-11-08 13:32:27
 LastEditors: Please set LastEditors
 Description: 
 FilePath: \other\vshare\test\python\main.py
@@ -29,7 +29,6 @@ def close_db_conn(cursor_obj,posbill_obj):
 def get_config_info(file_path,db_alias):
     cf = ConfigParser.ConfigParser()
     cf.read(file_path)
-    #read key和value
     db_info[db_alias_IP] = cf.get(db_alias, db_alias_IP)
     db_info[db_alias_Port] = cf.get(db_alias, db_alias_Port)
     db_info[db_alias_User] = cf.get(db_alias, db_alias_User)
