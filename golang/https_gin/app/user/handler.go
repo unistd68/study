@@ -26,10 +26,16 @@ func user_login(c *gin.Context) {
 	
 	if loginJson.Passwd == "admin" {
 		resp, err := json.Marshal(model.LoginResp{Status: "ok",Type:loginJson.Type,CurrentAuthority:"admin"})
+		if err != nil {
+			panic(err)
+		}
 		c.JSON(http.StatusOK, resp)
 		fmt.Println("login success")
 	} else {
 		resp, err := json.Marshal(model.LoginResp{Status: "error",Type:loginJson.Type,CurrentAuthority:"admin"})
+		if err != nil {
+			panic(err)
+		}
 		c.JSON(http.StatusOK, resp)
 		fmt.Println("login fail")
 	}
