@@ -1,9 +1,9 @@
 package model
 
 type User struct {
-    Id     int
-    Name   string
-    Passwd string
+    Id     int `json:"id"`
+    Name   string `json:"name"`
+    Passwd string `json:"password"`
 }
 
 type DBAuthInfo struct {
