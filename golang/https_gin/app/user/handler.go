@@ -30,7 +30,6 @@ func user_login(c *gin.Context) {
 		"password": json.Passwd,
 		"autoLogin": json.AutoLogin,
 		"type": json.Type
-
 	})
 }
 
