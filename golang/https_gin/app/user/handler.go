@@ -29,7 +29,7 @@ func user_login(c *gin.Context) {
 		c.JSON(http.StatusOK, resp)
 		fmt.Println("login success")
 	} else {
-		resp := json.Marshal(model.LoginResp{Status: "error",Type:loginJson.Type,CurrentAuthority:"admin"})
+		resp, err := json.Marshal(model.LoginResp{Status: "error",Type:loginJson.Type,CurrentAuthority:"admin"})
 		c.JSON(http.StatusOK, resp)
 		fmt.Println("login fail")
 	}
@@ -44,7 +44,7 @@ func testdb(c *gin.Context) {
 }
 
 func testjson(c *gin.Context) {
-    buf, err := json.Marshal(model.User{Name: "root",Passwd:"123456"})
+    buf, err := json.Marshal(model.AccountLogin{Name: "root",Passwd:"123456"})
     if err != nil {
         panic(err)
     }
