@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-11-08 10:39:41
- * @LastEditTime: 2021-11-14 17:35:38
+ * @LastEditTime: 2021-11-14 17:40:10
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \dubbo-goe:\other\vshare\test\golang\gin\app\shop\handler.go
@@ -24,6 +24,8 @@ func user_login(c *gin.Context) {
 	c.BindJSON(&json)
 	fmt.Println("%v",&json)
 	c.JSON(http.StatusOK, gin.H{
+		"status": 0,
+		"desc": "login success",
 		"name": json.Name,
 		"password": json.Passwd,
 
