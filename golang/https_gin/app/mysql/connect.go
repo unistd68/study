@@ -3,7 +3,6 @@ package db_mysql
 import (
 	"fmt"
     "database/sql"
-	// "github.com/jmoiron/sqlx"
     _ "github.com/go-sql-driver/mysql"
 	model "https_gin/app/model"
 )
