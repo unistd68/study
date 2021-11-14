@@ -3,8 +3,8 @@ package model
 type User struct {
     Name   string `json:"name"`
     Passwd string `json:"password"`
-    AutoLogin string `json:"autoLogin"`
-    Type bool `json:"type"`
+    AutoLogin bool `json:"autoLogin"`
+    Type string `json:"type"`
 }
 
 type DBAuthInfo struct {
