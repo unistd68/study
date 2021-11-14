@@ -15,7 +15,7 @@
 
 
  func Routers(e *gin.Engine) {
-	e.POST("/login", user_login)
+	e.POST("/api/login/account", user_login)
 	e.GET("/testdb", testdb)
 	e.GET("/testjson", testjson)
 }
