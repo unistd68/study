@@ -20,17 +20,20 @@
  )
 
 func user_login(c *gin.Context) {
-	json := model.User{}
-	c.BindJSON(&json)
-	fmt.Println("%v",&json)
-	c.JSON(http.StatusOK, gin.H{
-		"status": 0,
-		"desc": "login success",
-		"name": json.Name,
-		"password": json.Passwd,
-		"autoLogin": json.AutoLogin,
-		"type": json.Type,
-	})
+	loginJson := model.AccountLogin{}
+	c.BindJSON(&loginJson)
+	fmt.Println("%v",&loginJson)
+	
+	if loginJson.Passwd == "admin" {
+		resp := json.Marshal(model.LoginResp{Status: "ok",Type:loginJson.Type,CurrentAuthority:"admin"})
+		c.JSON(http.StatusOK, resp)
+		fmt.Println("login success")
+	} else {
+		resp := json.Marshal(model.LoginResp{Status: "error",Type:loginJson.Type,CurrentAuthority:"admin"})
+		c.JSON(http.StatusOK, resp)
+		fmt.Println("login fail")
+	}
+	
 }
 
 func testdb(c *gin.Context) {
