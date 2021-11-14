@@ -25,7 +25,7 @@ func user_login(c *gin.Context) {
 	fmt.Println("%v",&loginJson)
 	
 	if loginJson.Passwd == "admin" {
-		resp := json.Marshal(model.LoginResp{Status: "ok",Type:loginJson.Type,CurrentAuthority:"admin"})
+		resp, err := json.Marshal(model.LoginResp{Status: "ok",Type:loginJson.Type,CurrentAuthority:"admin"})
 		c.JSON(http.StatusOK, resp)
 		fmt.Println("login success")
 	} else {
