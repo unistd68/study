@@ -74,7 +74,7 @@ type NoticeIconItem struct {
 }
 
 type NoticeResp struct {
-    Data NoticeIconItem `json:"data"`
+    Data []NoticeIconItem `json:"data"`
 }
 
 type DBAuthInfo struct {
