@@ -63,13 +63,18 @@ type NoticeIconItem struct {
     ID   string `json:"id"`
     Extra string `json:"extra"`
     Key string `json:"key"`
-    Read string `json:"read"`
+    Read bool `json:"read"`
     Avatar string `json:"avatar"`
     Title string `json:"title"`
     Status string `json:"status"`
     Datetime string `json:"datetime"`
     Description string `json:"description"`
     Type string `json:"type"`
+    CickClose bool `json:"clickClose"`
+}
+
+type NoticeResp struct {
+    Data NoticeIconItem `json:"data"`
 }
 
 type DBAuthInfo struct {
