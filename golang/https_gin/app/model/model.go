@@ -35,10 +35,6 @@ type Geographic struct {
     Key string `json:"key"`
 }
 
-type City struct {
-    Label   string `json:"label"`
-    Key string `json:"key"`
-}
 
 type CurrentUser struct {
     Name   string `json:"name"`
