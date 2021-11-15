@@ -31,8 +31,8 @@ type Province struct {
 }
 
 type Geographic struct {
-    Label   string `json:"properties"`
-    Key string `json:"key"`
+    Province  Province `json:"province"`
+    City City `json:"city"`
 }
 
 
@@ -44,15 +44,19 @@ type CurrentUser struct {
     Signature string `json:"signature"`
     Title string `json:"title"`
     Group string `json:"group"`
-    Tags []TagItem `json:"tags"`
+    Tags []Property `json:"tags"`
     NotifyCount int `json:"notifyCount"`
     UnReadCount int `json:"unreadCount"`
     Country string `json:"country"`
     Access string `json:"access"`
-    Geographic string `json:"geographic"`
+    Geographic Geographic `json:"geographic"`
     City string `json:"city"`
     Address string `json:"address"`
     Phone string `json:"phone"`
+}
+
+type CurrentUserResp struct {
+    Data CurrentUser `json:"data"`
 }
 
 type NoticeIconItem struct {
