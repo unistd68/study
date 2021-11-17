@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-11-17 11:55:06
- * @LastEditTime: 2021-11-17 12:20:06
+ * @LastEditTime: 2021-11-17 12:29:49
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \dubbo-goe:\other\vshare\test\leetcode\下一个排列\main.cpp
@@ -24,14 +24,24 @@ void catTestCase()
 
 void test()
 {
-
+    int n;
+    std::vector<int> &nums;
+    std::cout << "请输入数组个数：" << std::endl;
+    std::cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        std::cout << "请输入第" << i + 1 << "个数：" << std::endl;
+        std::cin >> nums[i];
+    }
+    nextPermutation(nums);
+    show_vector(nums,"下一个排列");
 }
 
 void show_help()
 {
 	printf("####################################################\n");
 	printf("################### Usage ##########################\n");
-	printf("#### 0.  ./test 0 : 退出\n");
+	// printf("#### 0.  ./test 0 : 退出\n");
 	printf("#### 1.  ./test 1 : 查看题目\n");
 	printf("#### 2.  ./test 2 : 查看测试用例\n");
 	printf("#### 3.  ./test 3 : 开始测试\n");
@@ -42,17 +52,18 @@ void do_something(int argc, char *argv[])
 {
 	if (argc == 3 && strcmp(argv[1], "1") == 0)
 	{
-		printf("################# 获取sm3摘要 开始 ############################ \n");
-		test_sm3(argv[2]);
-		printf("################# 获取sm3摘要 结束 ############################ \n");
+		
 	}
 	else if (argc == 4 && strcmp(argv[1], "2") == 0)
 	{
-		printf("################# SM4算法ECB模式加密 开始 ############################ \n");
-		test_SM4ECBEncrypte(argv[2], argv[3]);
-		printf("################# SM4算法ECB模式加密 结束 ############################ \n");
+		
 	}
-	
+	else if (argc == 4 && strcmp(argv[1], "3") == 0)
+	{
+		printf("################# 测试 开始 ############################ \n");
+		test();
+		printf("################# 测试 结束 ############################ \n");
+	}
 	else
 	{
 		show_help();
