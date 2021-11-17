@@ -3,8 +3,6 @@ CC_FLAGS = -fpermissive -g -std=c++11
 EXEC = test
 OBJS = main.o algorithm.o tools.o
 
-CC_FLAGS += -fpermissive -g
-CC_FLAGS += -luuid -L/usr/lib64
 
 LIBS   := -luuid
 INCLUDE:= -I.
