@@ -52,7 +52,7 @@ func QueryDB(sqlStr string) (string, error){
     rows, _ := db.Query(sqlStr)
 
 	defer rows.Close()//defer关闭查询连接
-
+    fmt.Println("rows.Close()")
     //获取列相关信息
 	// strings, _ := rows.Columns()
     
@@ -84,6 +84,7 @@ func QueryDB(sqlStr string) (string, error){
       fmt.Println("Columns error")
 	  return "", err
 	}
+    fmt.Println("rows.Columns")
     count := len(columns)
 	tableData := make([]map[string]interface{}, 0)
 	values := make([]interface{}, count)
