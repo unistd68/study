@@ -30,7 +30,7 @@ func getVideoMsg(c *gin.Context) {
 
 	str:=[]byte(buf)
 	var videos model.Video
-	err:=json.Unmarshal(str,&videos)
+	err = json.Unmarshal(str,&videos)
 	if err!=nil{
         fmt.Println(err)
     }
