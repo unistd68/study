@@ -104,9 +104,9 @@ type Video struct {
 }
 
 type VideoMsg struct {
-    Id     int `json:"id"`
+    Id     int `json:"Id"`
     No     string `json:"no"`
     Title   string `json:"title"`
     Type   string `json:"type"`
-    Url   string `json:"src"`
+    Url   string `json:"url"`
 }
