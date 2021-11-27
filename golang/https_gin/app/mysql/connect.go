@@ -52,14 +52,14 @@ func QueryDB(sqlStr string) (string, error){
     stmt, err := db.Prepare(sqlStr)
 	if err != nil {
         fmt.Println("Prepare err")
-		return nil, err
+		return "", err
 	}
 	defer stmt.Close()
     fmt.Println("stmt.Close")
 	rows, err := stmt.Query()
 	if err != nil {
         fmt.Println("stmt.Close err")
-		return nil, err
+		return "", err
 	}
 	defer rows.Close()
     fmt.Println("rows.Close")
