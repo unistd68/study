@@ -10,18 +10,18 @@
  package video
 
  import (
-	"fmt"
+	// "fmt"
 	"github.com/gin-gonic/gin"
-	"encoding/json"
+	// "encoding/json"
 	"net/http"
 
-	model "https_gin/app/model"
+	// model "https_gin/app/model"
 	dbmysql "https_gin/app/mysql"
  )
 
 func getVideoMsg(c *gin.Context) {
-	sql := "select * from tb_address_info"
-	buf,err := dbmysql.query(sql);
+	sqlStr := "select * from tb_address_info"
+	buf,err := dbmysql.query(sqlStr);
 	if err != nil {
         panic(err)
     }
