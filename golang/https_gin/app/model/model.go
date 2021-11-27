@@ -100,7 +100,7 @@ type DBMsg struct {
 }
 
 type Video struct {
-    Videos   []VideoMsg `json:"videos"`
+    Videos   []VideoMsg `json:"data"`
 }
 
 type VideoMsg struct {
