@@ -31,7 +31,7 @@ func Connect(dbinfo model.DBAuthInfo)  {
 	// db.Close()
 }
 
-func query(sql string) (string, error){
+func query(sqlStr string) (string, error){
     // var url =fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",dbinfo.DBUser,dbinfo.DBPwd,dbinfo.DBHost,dbinfo.DBPort,dbinfo.DBName)
 	// fmt.Println(url)
 
@@ -49,7 +49,7 @@ func query(sql string) (string, error){
     }
 	fmt.Println("数据库连接成功")
 
-    rows, _ := db.Query(sql)
+    rows, _ := db.Query(sqlStr)
 
 	defer rows.Close()//defer关闭查询连接
 
