@@ -18,7 +18,7 @@ video "https_gin/app/video"
 
 func main() {
 	// 加载多个APP的路由配置
-	routers.Include( user.Routers video.Routers)
+	routers.Include( user.Routers,video.Routers)
 	// 初始化路由
 	r := routers.Init()
 	if err := r.Run(":8888"); err != nil {
