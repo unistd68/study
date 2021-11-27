@@ -45,7 +45,7 @@ func query(sql string) (string, error){
     err:=db.Ping()      //连接数据库
     if err!=nil{
         fmt.Println("数据库连接失败")
-        return
+        return "", err 
     }
 	fmt.Println("数据库连接成功")
 
