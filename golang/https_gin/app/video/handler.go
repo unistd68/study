@@ -14,10 +14,36 @@
 	"github.com/gin-gonic/gin"
 	"encoding/json"
 	"net/http"
+	"os"
+	"io/ioutil"
+	"path/filepath"
 
 	model "https_gin/app/model"
 	dbmysql "https_gin/app/mysql"
  )
+
+func getAllFiles(path string)([]string,error){
+	files,err := filepath.Glob(filepath.Join(path,"*"))
+	if err != nil {
+		panic(err)
+	}
+ 
+	for file := range files {
+		fmt.Println(file[i]) //打印path
+	}
+
+	return files,nil
+}
+
+func testPath(c *gin.Context){
+	var path = "/data/video/天下足球/"
+	buf,err := getAllFiles(path);
+	if err != nil {
+        panic(err)
+    }
+
+	c.JSON(http.StatusOK,"ok")
+}
 
 func getVideoMsg(c *gin.Context) {
 	sqlStr := "select * from tb_address_info"
