@@ -103,6 +103,10 @@ type Video struct {
     Videos   []VideoMsg `json:"data"`
 }
 
+type Video2 struct {
+    Videos   []VideoMsg 
+}
+
 type VideoMsg struct {
     Id     int `json:"Id"`
     No     string `json:"no"`
