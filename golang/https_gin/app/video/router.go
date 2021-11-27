@@ -16,5 +16,5 @@
 
  func Routers(e *gin.Engine) {
 	e.GET("/video/getVideoMsg", getVideoMsg)
-	e.GET("/video/testPath", testPath)
+	e.GET("/video/UpdateUrls", UpdateUrls)
 }
