@@ -63,7 +63,7 @@ func UpdateUrls(c *gin.Context){
 		filename := strings.TrimSuffix(files[i].Name(), fileext)
 		sqlStr := "insert into tb_address_info(no,title,type,url) values('01','"+ filename +"','"+ fileext +"','"+files[i].Name()+"')"
 		fmt.Println(sqlStr)
-		dbmysql.ExecSql(sqlStr);
+		//dbmysql.ExecSql(sqlStr)
 	}
 	c.JSON(http.StatusOK,"ok")
 }

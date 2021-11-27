@@ -91,7 +91,7 @@ func QueryDB(sqlStr string) (string, error){
 	return string(jsonData), nil 
 }
 
-func ExecSql(sqlStr string){
+func ExecSql(sqlStr string)(string, error){
     db, _:= sql.Open("mysql", "gch:GCHgch_123456@tcp(127.0.0.1:3306)/DB_VideoInfo?charset=utf8")
     db.SetMaxOpenConns(2000)
     db.SetMaxIdleConns(1000)
@@ -104,20 +104,25 @@ func ExecSql(sqlStr string){
     stmt, err := db.Prepare(sqlStr)
     if err != nil {
         fmt.Println(err)
+        return "", err
     }
     res, err := stmt.Exec()
     if err != nil {
         fmt.Println(err)
+        return "", err
     }
     lastId, err := res.LastInsertId()
     if err != nil {
         fmt.Println(err)
+        return "", err
     }
     rowCnt, err := res.RowsAffected()
     if err != nil {
         fmt.Println(err)
+        return "", err
     }
     fmt.Println("ID = %d, affected = %d\n", lastId, rowCnt)
+    return "", nil
 }
 
 func del(){}
