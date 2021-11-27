@@ -49,36 +49,20 @@ func QueryDB(sqlStr string) (string, error){
     }
 	fmt.Println("数据库连接成功")
 
-    rows, _ := db.Query(sqlStr)
-
-	defer rows.Close()//defer关闭查询连接
-    fmt.Println("rows.Close()")
-    //获取列相关信息
-	// strings, _ := rows.Columns()
-    
-	// for i:=0;i< len(strings);i++{
-	// 	fmt.Print(" ",strings[i])
-	// }
-	
-    // fmt.Println()
-
-    // var obj model.VideoMsg
-    // var videos model.Video
-    
-
-    // for rows.Next(){
-    //     rows.Scan(&obj.No,&obj.Title,&obj.Type,&obj.Url)//将一行数据放入参数中
-    //     videos.
-    // }
-
-    // buf, err := json.Marshal(model.AccountLogin{Name: "root",Passwd:"123456"})
-    // if err != nil {
-    //     panic(err)
-    // }
-    // println(string(buf))
-	// fmt.Println(string(buf))
-	// c.String(http.StatusOK, string(buf))
-
+    stmt, err := db.Prepare(sqlStr)
+	if err != nil {
+        fmt.Println("Prepare err")
+		return nil, err
+	}
+	defer stmt.Close()
+    fmt.Println("stmt.Close")
+	rows, err := stmt.Query()
+	if err != nil {
+        fmt.Println("stmt.Close err")
+		return nil, err
+	}
+	defer rows.Close()
+    fmt.Println("rows.Close")
     columns, err := rows.Columns()
 	if err != nil {
       fmt.Println("Columns error")
