@@ -21,7 +21,7 @@
 
 func getVideoMsg(c *gin.Context) {
 	sqlStr := "select * from tb_address_info"
-	buf,err := dbmysql.query(sqlStr);
+	buf,err := dbmysql.queryDB(sqlStr);
 	if err != nil {
         panic(err)
     }
