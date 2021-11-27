@@ -14,9 +14,8 @@
 	"github.com/gin-gonic/gin"
 	"encoding/json"
 	"net/http"
-	"os"
-	"path"
-	// "io/ioutil"
+	// "path"
+	"io/ioutil"
 	"path/filepath"
 	"strings"
 
@@ -52,11 +51,21 @@ func getAllFilesName(path string)([]string,error){
 
 func UpdateUrls(c *gin.Context){
 	var path = "/data/video/天下足球/"
-	files,err := getAllFilesName(path);
-	if err != nil {
-        panic(err)
-    }
+	// files,err := getAllFilesName(path);
+	// if err != nil {
+    //     panic(err)
+    // }
 	
+	files,err := ioutil.ReadDir(path)
+	if err != nil {
+		panic(err)
+		return
+	}
+	fmt.Println(len(files))
+	// for i := range files {
+	// 	fmt.Println(files[i].Name())  //打印当前文件或目录下的文件或目录名
+	// }
+
 	for i := range files {
 		fmt.Println(files[i].Name())  //打印当前文件或目录下的文件或目录名
 		fileext := path.Ext(files[i].Name())
