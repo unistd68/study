@@ -7,10 +7,6 @@ import (
 	model "https_gin/app/model"
 )
 
-func GetDBAuthInfo()
-{
-
-}
 
 func Connect(dbinfo model.DBAuthInfo)  {
 	var url =fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",dbinfo.DBUser,dbinfo.DBPwd,dbinfo.DBHost,dbinfo.DBPort,dbinfo.DBName)
