@@ -91,8 +91,7 @@ func QueryDB(sqlStr string) (string, error){
 	return string(jsonData), nil 
 }
 
-func ExecSql(sqlStr string)
-{
+func ExecSql(sqlStr string){
     db, _:= sql.Open("mysql", "gch:GCHgch_123456@tcp(127.0.0.1:3306)/DB_VideoInfo?charset=utf8")
     db.SetMaxOpenConns(2000)
     db.SetMaxIdleConns(1000)
