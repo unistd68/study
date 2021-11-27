@@ -31,7 +31,7 @@ func Connect(dbinfo model.DBAuthInfo)  {
 	// db.Close()
 }
 
-func queryDB(sqlStr string) (string, error){
+func QueryDB(sqlStr string) (string, error){
     // var url =fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",dbinfo.DBUser,dbinfo.DBPwd,dbinfo.DBHost,dbinfo.DBPort,dbinfo.DBName)
 	// fmt.Println(url)
 
