@@ -15,33 +15,56 @@
 	"encoding/json"
 	"net/http"
 	"os"
-	"io/ioutil"
+	"path"
+	// "io/ioutil"
 	"path/filepath"
+	"strings"
 
 	model "https_gin/app/model"
 	dbmysql "https_gin/app/mysql"
  )
 
-func getAllFiles(path string)([]string,error){
+func getAllFilesPath(path string)([]string,error){
 	files,err := filepath.Glob(filepath.Join(path,"*"))
 	if err != nil {
 		panic(err)
 	}
  
-	for file := range files {
-		fmt.Println(file[i]) //打印path
+	for i := range files {
+		fmt.Println(files[i]) //打印path
 	}
 
 	return files,nil
 }
 
-func testPath(c *gin.Context){
+func getAllFilesName(path string)([]string,error){
+	files,err := ioutil.ReadDir(path)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(len(files))
+	for i := range files {
+		fmt.Println(files[i].Name())  //打印当前文件或目录下的文件或目录名
+	}
+
+	return files,nil
+}
+
+func UpdateUrls(c *gin.Context){
 	var path = "/data/video/天下足球/"
-	buf,err := getAllFiles(path);
+	files,err := getAllFilesName(path);
 	if err != nil {
         panic(err)
     }
-
+	
+	for i := range files {
+		fmt.Println(files[i].Name())  //打印当前文件或目录下的文件或目录名
+		fileext := path.Ext(files[i].Name())
+		filename := strings.TrimSuffix(files[i].Name(), fileext)
+		sqlStr := "insert into tb_address_info(no,title,type,url) values('01','"+ filename +"','"+ fileext +"','"+files[i].Name()+"')"
+		fmt.Println(sqlStr)
+		dbmysql.ExecSql(sqlStr);
+	}
 	c.JSON(http.StatusOK,"ok")
 }
 
