@@ -36,27 +36,27 @@ func getAllFilesPath(path string)([]string,error){
 	return files,nil
 }
 
-func getAllFilesName(path string)([]string,error){
-	files,err := ioutil.ReadDir(path)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(len(files))
-	for i := range files {
-		fmt.Println(files[i].Name())  //打印当前文件或目录下的文件或目录名
-	}
+// func getAllFilesName(path string)([]string,error){
+// 	files,err := ioutil.ReadDir(path)
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	fmt.Println(len(files))
+// 	for i := range files {
+// 		fmt.Println(files[i].Name())  //打印当前文件或目录下的文件或目录名
+// 	}
 
-	return files,nil
-}
+// 	return files,nil
+// }
 
 func UpdateUrls(c *gin.Context){
-	var path = "/data/video/天下足球/"
+	var filepath = "/data/video/天下足球/"
 	// files,err := getAllFilesName(path);
 	// if err != nil {
     //     panic(err)
     // }
 	
-	files,err := ioutil.ReadDir(path)
+	files,err := ioutil.ReadDir(filepath)
 	if err != nil {
 		panic(err)
 		return
