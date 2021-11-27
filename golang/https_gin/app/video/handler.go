@@ -10,12 +10,12 @@
  package video
 
  import (
-	// "fmt"
+	"fmt"
 	"github.com/gin-gonic/gin"
-	// "encoding/json"
+	"encoding/json"
 	"net/http"
 
-	// model "https_gin/app/model"
+	model "https_gin/app/model"
 	dbmysql "https_gin/app/mysql"
  )
 
