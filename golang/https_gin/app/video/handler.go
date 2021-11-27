@@ -69,7 +69,7 @@ func UpdateUrls(c *gin.Context){
 	for i := range files {
 		fmt.Println(files[i].Name())  //打印当前文件或目录下的文件或目录名
 		fileext := path.Ext(files[i].Name())
-		filetype := strings.TrimSuffix(fileext, ".")
+		filetype := strings.Trim(fileext, ".")
 		filename := strings.TrimSuffix(files[i].Name(), fileext)
 		sqlStr := "insert into tb_address_info(no,title,type,url) values('01','"+ filename +"','"+ filetype +"','"+files[i].Name()+"');"
 		fmt.Println(sqlStr)
