@@ -34,7 +34,7 @@ func Connect(dbinfo model.DBAuthInfo)  {
 func QueryDB(sqlStr string) (string, error){
     // var url =fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",dbinfo.DBUser,dbinfo.DBPwd,dbinfo.DBHost,dbinfo.DBPort,dbinfo.DBName)
 	// fmt.Println(url)
-
+    fmt.Println("begin QueryDB")
 	db, _:= sql.Open("mysql", "gch:GCHgch_123456@tcp(127.0.0.1:3306)/test?charset=utf8")
     db.SetMaxOpenConns(2000)
     db.SetMaxIdleConns(1000)
@@ -81,6 +81,7 @@ func QueryDB(sqlStr string) (string, error){
 
     columns, err := rows.Columns()
 	if err != nil {
+      fmt.Println("Columns error")
 	  return "", err
 	}
     count := len(columns)
@@ -88,11 +89,13 @@ func QueryDB(sqlStr string) (string, error){
 	values := make([]interface{}, count)
 	valuePtrs := make([]interface{}, count)
 	for rows.Next() {
+      fmt.Println("rows.Next..")
 	  for i := 0; i < count; i++ {
 		  valuePtrs[i] = &values[i]
 	  }
 	  rows.Scan(valuePtrs...)
 	  entry := make(map[string]interface{})
+      fmt.Println("range columns")
 	  for i, col := range columns {
 		  var v interface{}
 		  val := values[i]
@@ -104,12 +107,16 @@ func QueryDB(sqlStr string) (string, error){
 		  }
 		  entry[col] = v
 	  }
+      fmt.Println("append")
 	  tableData = append(tableData, entry)
 	}
+    fmt.Println("Marshal")
 	jsonData, err := json.Marshal(tableData)
 	if err != nil {
+      fmt.Println("Marshal error")
 	  return "", err
 	}
+    fmt.Println("ok")
 	fmt.Println(string(jsonData))
 	return string(jsonData), nil 
 }
