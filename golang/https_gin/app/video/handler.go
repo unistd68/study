@@ -28,7 +28,7 @@ func getVideoMsg(c *gin.Context) {
     println(string(buf))
 	// c.String(http.StatusOK, string(buf))
 
-	str:=[]byte(buf)
+	str:=[]byte(string(buf))
 	var videos model.Video
 	err = json.Unmarshal(str,&videos)
 	if err!=nil{
