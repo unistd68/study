@@ -1,6 +1,6 @@
 {
   "database": {
-    "name": "test",
+    "name": "DB_VideoInfo",
     "password": "GCHgch_123456",
     "user": "gch",
     "type": "mysql",

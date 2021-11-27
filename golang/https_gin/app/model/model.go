@@ -1,5 +1,14 @@
 package model
 
+// type DBInfo struct {
+//     LoginName   string `json:"loginname"`
+//     Passwd string `json:"password"`
+//     DBName bool `json:"dbname"`
+//     DBAddr string `json:"address"`
+//     DBPort int `json:"port"`
+//     DBFmt string `json:"fmt"`
+// }
+
 type AccountLogin struct {
     Name   string `json:"name"`
     Passwd string `json:"password"`
@@ -88,4 +97,15 @@ type DBAuthInfo struct {
 type DBMsg struct {
     Id     int
     Msg   string
+}
+
+type Video struct {
+    Videos   []VideoMsg `json:"videos"`
+}
+
+type VideoMsg struct {
+    No     int `json:"no"`
+    Title   string `json:"title"`
+    Type   string `json:"type"`
+    Url   string `json:"src"`
 }

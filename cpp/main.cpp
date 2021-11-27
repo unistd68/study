@@ -195,7 +195,7 @@ void test_sumofnums(int argc, char *argv[])
 	std::cout << std::endl;
 }
 
-void test_dp(char* in)
+void test_dp(char *in)
 {
 	int N = atoi(in);
 	testCakePrice(N);
@@ -260,10 +260,8 @@ void do_something(int argc, char *argv[])
 }
 
 
-
 int main(int argc, char *argv[])
 {
 	do_something(argc, argv);
 	return 0;
 }
-
