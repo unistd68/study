@@ -12,7 +12,7 @@ usage() {
 
 #检查程序是否正在运行
 is_running() {
-	pid=`ps -ef|grep $APP_NAME|grep -v grep|awk '{print $2}'`
+	pid=`ps -ef|grep main.go|grep -v grep|awk '{print $2}'`
 	#如果不存在则返回1，存在则返回0
 	if [ -z "${pid}" ];
 	then
@@ -30,7 +30,7 @@ start() {
 		echo "${APP_NAME} is already running, pid=${pid}"
 	else
 		sh update.sh
-		(nohup go run ${APP_NAME} &) > nohup.out 2>&1 &
+		(nohup go run main.go &) > nohup.out 2>&1 &
 	fi
 }
 
