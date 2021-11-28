@@ -13,6 +13,7 @@ var title = [];
 var aside=document.getElementById("playList");
 var oUL=document.getElementById("playListUl");
 var goUrl="http://192.168.1.113:80/video/getVideoMsg"
+var urlPrefix="http://192.168.1.113:9000/video/天下足球/"
 
 var HttpClient = function() {
     this.get = function(aUrl, aCallback) {
@@ -39,8 +40,8 @@ window.onload = function(){
 		for(var i=0;i<vLen;i++){
 			var jsonItem = obj.data[i];
 			var item = document.createElement('li');
-			item.setAttribute('value',String(jsonItem["url"])); 
-			console.log(jsonItem["url"]);
+			item.setAttribute('value',urlPrefix+String(jsonItem["url"])); 
+			console.log(urlPrefix+jsonItem["url"]);
 			item.setAttribute('title',jsonItem["title"]); 
 			item.innerHTML = jsonItem["title"];
 			console.log(jsonItem["title"]);
@@ -49,7 +50,7 @@ window.onload = function(){
 				item.className = "select";
 			}
 			document.getElementById("playListUl").appendChild(item);
-			url[i] = String(jsonItem["url"]);
+			url[i] = urlPrefix+String(jsonItem["url"]);
 			title[i] = jsonItem["title"];
 			
 			// lis.push(item);
