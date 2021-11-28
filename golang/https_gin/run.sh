@@ -30,7 +30,7 @@ start() {
 		echo "${APP_NAME} is already running, pid=${pid}"
 	else
 		sh update.sh
-		(nohup go run ${APP_CONF} &) > nohup.out 2>&1 &
+		(nohup go run ${APP_NAME} &) > nohup.out 2>&1 &
 	fi
 }
 
