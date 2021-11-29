@@ -33,48 +33,37 @@ window.onload = function(){
 	var client = new HttpClient();
 	client.get(goUrl, function(response) {
 		// do something with response
-		console.log(response);
 		var obj = JSON.parse(response);
 		var vLen = obj.data.length;
-		console.log(obj.data.length);
+		var video = document.getElementById("video");
 		for(var i=0;i<vLen;i++){
 			var jsonItem = obj.data[i];
 			var item = document.createElement('li');
 			item.setAttribute('value',urlPrefix+String(jsonItem["url"])); 
-			console.log(urlPrefix+jsonItem["url"]);
 			item.setAttribute('title',jsonItem["title"]); 
 			item.innerHTML = jsonItem["title"];
-			console.log(jsonItem["title"]);
+			url[i] = urlPrefix+String(jsonItem["url"]);
+			title[i] = jsonItem["title"];
 			if(i==0)
 			{
 				item.className = "select";
+				video.setAttribute('src',url[i]);
+				video.setAttribute('volumn',0.4);
 			}
 			document.getElementById("playListUl").appendChild(item);
-			url[i] = urlPrefix+String(jsonItem["url"]);
-			title[i] = jsonItem["title"];
 			
-			// lis.push(item);
+			
 		}
 
 		var lis = document.getElementsByTagName("li");
-		var video = document.getElementById("video");
-		var vLen = lis.length; // 播放列表的长度
-		console.log(vLen);
-		
-
 		var curr = 0; // 当前播放的视频
 		var next = curr + 1;
-		
-		// for(var i=0;i<lis.length;i++){
-		// 	url[i] = lis[j].getAttribute("value");
-		// }
-		
+				
 		//绑定单击事件
 		for(var i=0;i<vLen;i++){
 				lis[i].onclick = function(){
 					for(var j=0;j<vLen;j++){
 						if(lis[j] == this){
-							// video.setAttribute("src",this.getAttribute("value"));
 							video.setAttribute("src",url[j]);
 							video.setAttribute('autoplay','autoplay');
 							this.innerHTML = '  '+this.innerHTML;
@@ -90,22 +79,18 @@ window.onload = function(){
 		}	
 		
 
-		video.setAttribute('src',url[0]);
-		lis[0].innerHTML = ' '+title[0];
-		lis[0].className = "select";
-		
-		
+		// video.setAttribute('src',url[0]);
+		// video.volumn=0.4;
+		// lis[0].innerHTML = ' '+title[0];
+		// lis[0].className = "select";
 		
 		video.addEventListener('ended', play);
 		//play();
 		function play() {
-			console.log("curr:"+curr);
-			console.log("next:"+next);
 			if (curr + 1 >= vLen) next = 0; // 列表末尾，重新播放
 			for(var j=0;j<vLen;j++){
 				if(j == next){
 					video.setAttribute("src",url[j]);
-					console.log(lis[j].getAttribute("value"));
 					video.setAttribute('autoplay','autoplay');
 					lis[j].innerHTML = ' '+ lis[j].innerHTML;
 					lis[j].className = "select";
@@ -114,20 +99,14 @@ window.onload = function(){
 					lis[j].className = "";
 				}
 			}
-		video.src = url[next];
-		video.load(); // 如果短的话，可以加载完成之后再播放，监听 canplaythrough 事件即可
-		video.play();
-		curr = next;
-		next ++;
-		}
-		console.log("check begin");
-		for(var i=0;i<vLen;i++)
-		{
-			console.log(i+":");
-			console.log(lis[i].getAttribute("value"));
-			console.log(lis[i].getAttribute("title"));
+			video.src = url[next];
+			video.load(); // 如果短的话，可以加载完成之后再播放，监听 canplaythrough 事件即可
+			video.play();
+			curr = next;
+			next++;
 		}
 
+		video.volume = 0.2;
 	});
 
 	

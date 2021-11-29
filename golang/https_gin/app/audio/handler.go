@@ -7,7 +7,7 @@
  * @FilePath: \dubbo-goe:\other\vshare\test\golang\gin\app\shop\handler.go
  */
 
- package video
+ package audio
 
  import (
 	"fmt"
@@ -23,63 +23,32 @@
 	dbmysql "https_gin/app/mysql"
  )
 
-func getAllFilesPath(path string)([]string,error){
-	files,err := filepath.Glob(filepath.Join(path,"*"))
-	if err != nil {
-		panic(err)
-	}
- 
-	for i := range files {
-		fmt.Println(files[i]) //打印path
-	}
-
-	return files,nil
-}
-
-// func getAllFilesName(path string)([]string,error){
-// 	files,err := ioutil.ReadDir(path)
-// 	if err != nil {
-// 		panic(err)
-// 	}
-// 	fmt.Println(len(files))
-// 	for i := range files {
-// 		fmt.Println(files[i].Name())  //打印当前文件或目录下的文件或目录名
-// 	}
-
-// 	return files,nil
-// }
-
-func UpdateUrls(c *gin.Context){
+ func UpdateUrls(c *gin.Context){
 	var filepath = "/data/video/天下足球/"
-	// files,err := getAllFilesName(path);
-	// if err != nil {
-    //     panic(err)
-    // }
-	
+
 	files,err := ioutil.ReadDir(filepath)
 	if err != nil {
 		panic(err)
 		return
 	}
+
 	fmt.Println(len(files))
-	// for i := range files {
-	// 	fmt.Println(files[i].Name())  //打印当前文件或目录下的文件或目录名
-	// }
 
 	for i := range files {
 		fmt.Println(files[i].Name())  //打印当前文件或目录下的文件或目录名
 		fileext := path.Ext(files[i].Name())
 		filetype := strings.Trim(fileext, ".")
 		filename := strings.TrimSuffix(files[i].Name(), fileext)
-		sqlStr := "insert into tb_video_addr(no,title,type,url) values('01','"+ filename +"','"+ filetype +"','"+files[i].Name()+"');"
+		sqlStr := "insert into tb_audio_addr(no,title,type,url) values('01','"+ filename +"','"+ filetype +"','"+files[i].Name()+"');"
 		fmt.Println(sqlStr)
 		dbmysql.ExecSql(sqlStr)
 	}
 	c.JSON(http.StatusOK,"ok")
 }
 
-func getVideoMsg(c *gin.Context) {
-	sqlStr := "select no,name as title,type,net_link as url  from tb_video_addr"
+
+func getAudioMsg(c *gin.Context) {
+	sqlStr := "SELECT taa.NAME AS NAME, tai1.NAME AS artist, taa.net_link AS url, taa.lrc_link AS lrc, tai2.pic_net_link AS cover FROM tb_audio_addr taa LEFT JOIN tb_album_info tai2 ON taa.album_no = tai2.NO LEFT JOIN tb_artist_info tai1 ON tai2.artist_no = tai1.NO;"
 	buf,err := dbmysql.QueryDB(sqlStr);
 	if err != nil {
         panic(err)
