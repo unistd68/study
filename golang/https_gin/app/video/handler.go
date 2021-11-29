@@ -78,7 +78,7 @@ func UpdateUrls(c *gin.Context){
 	c.JSON(http.StatusOK,"ok")
 }
 
-func getVideoMsg(c *gin.Context) {
+func getVideoMsg2(c *gin.Context) {
 	sqlStr := "select no,name as title,type,net_link as url  from tb_video_addr"
 	buf,err := dbmysql.QueryDB(sqlStr);
 	if err != nil {
@@ -98,7 +98,7 @@ func getVideoMsg(c *gin.Context) {
 }
 
 
-func getVideoMsg2(c *gin.Context) {
+func getVideoMsg(c *gin.Context) {
 	sqlStr := "select tva.title as title,tsi.ip_addr as ip, tva.bucket as bucket,  tva.video_path as filepath from tb_video_addr tva inner join tb_server_intance tsi on tva.server_no = tsi.no;"
 	buf,err := dbmysql.QueryDB(sqlStr);
 	if err != nil {
