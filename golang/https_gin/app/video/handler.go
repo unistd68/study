@@ -113,7 +113,7 @@ func getVideoMsg2(c *gin.Context) {
         fmt.Println(err)
     }
 
-	var respBuff VideoResp
+	var respBuff model.VideoResp
 
 	vlen := len(records.DBAudios)
 	for i:=0;i<vlen;i++{
