@@ -13,7 +13,7 @@ import (
 user "https_gin/app/user"
 routers "https_gin/routers"
 video "https_gin/app/video"
-
+audio "https_gin/app/audio"
 )
 
 func main() {
