@@ -105,8 +105,8 @@ func getVideoMsg2(c *gin.Context) {
         panic(err)
     }
 
-	var respBuff = "{\"data\":" + string(buf) + "}"
-	str:=[]byte(string(respBuff))
+	var buff = "{\"data\":" + string(buf) + "}"
+	str:=[]byte(string(buff))
 	var records model.AudioRecords
 	err = json.Unmarshal(str,&records)
 	if err!=nil{
