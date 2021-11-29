@@ -105,8 +105,8 @@ type Video struct {
 
 type VideoMsg struct {
     Title   string `json:"title"`
-    Type   string `json:"type"`
-    Url   string `json:"url"`
+    Type    string `json:"type"`
+    Url     string `json:"url"`
 }
 
 type Audio struct {
@@ -119,4 +119,24 @@ type AudioMsg struct {
     Url   string `json:"url"`
     Lrc   string `json:"lrc"`
     Cover   string `json:"cover"`
+}
+
+type AudioRecords struct {
+    DBAudios   []DBAudios `json:"data"`
+}
+
+type DBAudios struct {
+    Title     string `json:"title"`
+    Ip   string `json:"ip"`
+    Bucket   string `json:"bucket"`
+    Filepath   string `json:"filepath"`
+}
+
+type VideoResp struct {
+    Addrs   []VideoAddr `json:"data"`
+}
+
+type VideoAddr struct {
+    Title   string `json:"title"`
+    Url   string `json:"url"`
 }

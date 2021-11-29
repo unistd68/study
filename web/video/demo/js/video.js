@@ -13,7 +13,7 @@ var title = [];
 var aside=document.getElementById("playList");
 var oUL=document.getElementById("playListUl");
 var goUrl="http://192.168.1.113:8889/video/getVideoMsg"
-var urlPrefix="http://192.168.1.113:9000/video/天下足球/"
+// var urlPrefix="http://192.168.1.113:9000/video/天下足球/"
 
 var HttpClient = function() {
     this.get = function(aUrl, aCallback) {
@@ -37,13 +37,16 @@ window.onload = function(){
 		var vLen = obj.data.length;
 		var video = document.getElementById("video");
 		for(var i=0;i<vLen;i++){
+			
 			var jsonItem = obj.data[i];
+			url[i] = String(jsonItem["url"]).trim();
+			title[i] = String(jsonItem["title"]).trim();
 			var item = document.createElement('li');
-			item.setAttribute('value',urlPrefix+String(jsonItem["url"])); 
-			item.setAttribute('title',jsonItem["title"]); 
-			item.innerHTML = jsonItem["title"];
-			url[i] = urlPrefix+String(jsonItem["url"]);
-			title[i] = jsonItem["title"];
+			item.setAttribute('value',url[i]); 
+			item.setAttribute('title',title[i]); 
+			item.innerHTML = title[i];
+			// url[i] = urlPrefix+String(jsonItem["url"]);
+			
 			if(i==0)
 			{
 				item.className = "select";
@@ -77,13 +80,7 @@ window.onload = function(){
 					}
 			}
 		}	
-		
-
-		// video.setAttribute('src',url[0]);
-		// video.volumn=0.4;
-		// lis[0].innerHTML = ' '+title[0];
-		// lis[0].className = "select";
-		
+				
 		video.addEventListener('ended', play);
 		//play();
 		function play() {

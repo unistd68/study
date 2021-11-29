@@ -96,3 +96,32 @@ func getVideoMsg(c *gin.Context) {
 	// fmt.Println("%v",&videos)
 	c.JSON(http.StatusOK,videos)
 }
+
+
+func getVideoMsg2(c *gin.Context) {
+	sqlStr := "select tva.title as title,tsi.ip_addr as ip, tva.bucket as bucket,  tva.video_path as filepath from tb_video_addr tva inner join tb_server_intance tsi on tva.server_no = tsi.no;"
+	buf,err := dbmysql.QueryDB(sqlStr);
+	if err != nil {
+        panic(err)
+    }
+
+	var respBuff = "{\"data\":" + string(buf) + "}"
+	str:=[]byte(string(respBuff))
+	var records model.AudioRecords
+	err = json.Unmarshal(str,&records)
+	if err!=nil{
+        fmt.Println(err)
+    }
+
+	var respBuff VideoResp
+
+	vlen := len(records.DBAudios)
+	for i:=0;i<vlen;i++{
+		var url = records.DBAudios[i].Ip + records.DBAudios[i].Bucket + records.DBAudios[i].Filepath;
+		respBuff.Addrs = append(respBuff.Addrs,VideoAddr{Title:records.DBAudios[i].Title,Url:url})
+	}
+
+	fmt.Println(records.DBAudios.length)
+	// fmt.Println("%v",&videos)
+	c.JSON(http.StatusOK,respBuff)
+}
