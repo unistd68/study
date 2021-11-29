@@ -103,14 +103,20 @@ type Video struct {
     Videos   []VideoMsg `json:"data"`
 }
 
-type Video2 struct {
-    Videos   []VideoMsg 
-}
-
 type VideoMsg struct {
-    Id     int `json:"Id"`
-    No     string `json:"no"`
     Title   string `json:"title"`
     Type   string `json:"type"`
     Url   string `json:"url"`
+}
+
+type Audio struct {
+    Audios   []AudioMsg `json:"data"`
+}
+
+type AudioMsg struct {
+    Name     string `json:"name"`
+    Artist   string `json:"artist"`
+    Url   string `json:"url"`
+    Lrc   string `json:"lrc"`
+    Cover   string `json:"cover"
 }

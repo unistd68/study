@@ -48,7 +48,7 @@
 
 
 func getAudioMsg(c *gin.Context) {
-	sqlStr := "SELECT taa.NAME AS NAME, tai1.NAME AS artist, taa.net_link AS url, taa.lrc_link AS lrc, tai2.pic_net_link AS cover FROM tb_audio_addr taa LEFT JOIN tb_album_info tai2 ON taa.album_no = tai2.NO LEFT JOIN tb_artist_info tai1 ON tai2.artist_no = tai1.NO;"
+	sqlStr := "SELECT taa.NAME AS name, tai1.NAME AS artist, taa.net_link AS url, taa.lrc_link AS lrc, tai2.pic_net_link AS cover FROM tb_audio_addr taa LEFT JOIN tb_album_info tai2 ON taa.album_no = tai2.NO LEFT JOIN tb_artist_info tai1 ON tai2.artist_no = tai1.NO;"
 	buf,err := dbmysql.QueryDB(sqlStr);
 	if err != nil {
         panic(err)
@@ -56,12 +56,12 @@ func getAudioMsg(c *gin.Context) {
 
 	var respBuff = "{\"data\":" + string(buf) + "}"
 	str:=[]byte(string(respBuff))
-	var videos model.Video
-	err = json.Unmarshal(str,&videos)
+	var audios model.Audio
+	err = json.Unmarshal(str,&audios)
 	if err!=nil{
         fmt.Println(err)
     }
 	
 	// fmt.Println("%v",&videos)
-	c.JSON(http.StatusOK,videos)
+	c.JSON(http.StatusOK,audios)
 }
