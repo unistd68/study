@@ -118,5 +118,5 @@ type AudioMsg struct {
     Artist   string `json:"artist"`
     Url   string `json:"url"`
     Lrc   string `json:"lrc"`
-    Cover   string `json:"cover"
+    Cover   string `json:"cover"`
 }
