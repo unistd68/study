@@ -117,7 +117,7 @@ func getVideoMsg2(c *gin.Context) {
 
 	vlen := len(records.DBAudios)
 	for i:=0;i<vlen;i++{
-		var url = records.DBAudios[i].Ip + records.DBAudios[i].Bucket + records.DBAudios[i].Filepath;
+		var url = strings.TrimSpace(records.DBAudios[i].Ip) + strings.TrimSpace(records.DBAudios[i].Bucket) + "/" + strings.TrimSpace(records.DBAudios[i].Filepath);
 		respBuff.Addrs = append(respBuff.Addrs,model.VideoAddr{Title:records.DBAudios[i].Title,Url:url})
 	}
 
