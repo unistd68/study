@@ -1,14 +1,5 @@
 package model
 
-// type DBInfo struct {
-//     LoginName   string `json:"loginname"`
-//     Passwd string `json:"password"`
-//     DBName bool `json:"dbname"`
-//     DBAddr string `json:"address"`
-//     DBPort int `json:"port"`
-//     DBFmt string `json:"fmt"`
-// }
-
 type AccountLogin struct {
     Name   string `json:"name"`
     Passwd string `json:"password"`
@@ -91,10 +82,12 @@ type OutLoginResp struct {
     Success   bool `json:"success"`
 }
 
-type ORulesResp struct {
+type RulesResp struct {
     Rules    []RuleListItem `json:"data"`
     Total   int `json:"total"`
     Success   bool `json:"success"`
+    PageSize   int `json:"pageSize"`
+    Current   int `json:"current"`
 }
 
 type RuleListItem struct {
@@ -112,6 +105,28 @@ type RuleListItem struct {
     progress  int  `json:"progress"`
 }
 
+type MenutItem struct{
+    Key       int       `json:"key"`
+    Disabled  bool      `json:"disabled"`
+    Href      string    `json:"href"`
+    Avatar    string    `json:"avatar"`
+    Name      string    `json:"name"`
+    Owner     string    `json:"owner"`
+    Desc      string    `json:"desc"`
+    CallNo    int       `json:"callNo"`
+    Status    string    `json:"status"`
+    UpdatedAt time.Time `json:"updatedAt"`
+    CreatedAt time.Time `json:"createdAt"`
+    Progress  int       `json:"progress"`
+}
+
+type MenutsResp struct {
+	Data     []MenutItem `json:"data"`
+	Total    int  `json:"total"`
+	Success  bool `json:"success"`
+	PageSize int  `json:"pageSize"`
+	Current  int  `json:"current"`
+}
 
 type EmptyStruct struct {}
 
@@ -169,4 +184,5 @@ type VideoAddr struct {
     Title   string `json:"title"`
     Url   string `json:"url"`
 }
+
 
