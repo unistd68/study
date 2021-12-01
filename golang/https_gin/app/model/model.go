@@ -87,9 +87,11 @@ type NoticeResp struct {
 }
 
 type OutLoginResp struct {
-    Data    struct `json:"data"`
+    Data    EmptyStruct `json:"data"`
     Success   bool `json:"success"`
 }
+
+type EmptyStruct struct {}
 
 type DBAuthInfo struct {
     DBName  string
