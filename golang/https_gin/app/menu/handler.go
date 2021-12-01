@@ -31,10 +31,10 @@
 
 
 func getRule(c *gin.Context) {
-	str := getMenusTest()
+	str := getRuleTest()
 	byteStr:=[]byte(string(str))
 	var menus model.MenutsResp
-	err = json.Unmarshal(byteStr,&menus)
+	err := json.Unmarshal(byteStr,&menus)
 	if err!=nil{
         fmt.Println(err)
     }
