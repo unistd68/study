@@ -65,7 +65,7 @@
         routes: [
           {
             name: 'play',
-            path: '/audio/Play',
+            path: '/audio/lay',
             component: './audio/Play',
           },
         ],
@@ -85,7 +85,7 @@
         routes: [
           {
             name: 'play',
-            path: '/video/Play',
+            path: '/video/play',
             component: './video/Play',
           },
         ],
