@@ -91,6 +91,28 @@ type OutLoginResp struct {
     Success   bool `json:"success"`
 }
 
+type ORulesResp struct {
+    Rules    []RuleListItem `json:"data"`
+    Total   int `json:"total"`
+    Success   bool `json:"success"`
+}
+
+type RuleListItem struct {
+    key  int  `json:"key"`
+    disabled  bool  `json:"disabled"`
+    href  string  `json:"href"`
+    avatar  string  `json:"avatar"`
+    name  string  `json:"name"`
+    owner  string  `json:"owner"`
+    desc  string  `json:"desc"`
+    callNo  int  `json:"callNo"`
+    status  int  `json:"status"`
+    updatedAt  string  `json:"updatedAt"`
+    createdAt  string  `json:"createdAt"`
+    progress  int  `json:"progress"`
+}
+
+
 type EmptyStruct struct {}
 
 type DBAuthInfo struct {

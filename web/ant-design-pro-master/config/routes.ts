@@ -28,7 +28,7 @@
     path: '/admin',
     name: 'admin',
     icon: 'crown',
-    access: 'canAdmin',
+    // access: 'canAdmin',
     component: './Admin',
     routes: [
       {
@@ -55,4 +55,45 @@
   {
     component: './404',
   },
+
+  {
+    path: '/audio',
+    // layout: false,
+    routes: [
+      {
+        path: '/audio',
+        routes: [
+          {
+            name: 'play',
+            path: '/audio/Play',
+            component: './audio/Play',
+          },
+        ],
+      },
+      {
+        component: './404',
+      },
+    ],
+  },
+
+  {
+    path: '/video',
+    // layout: false,
+    routes: [
+      {
+        path: '/video',
+        routes: [
+          {
+            name: 'play',
+            path: '/video/Play',
+            component: './video/Play',
+          },
+        ],
+      },
+      {
+        component: './404',
+      },
+    ],
+  },
+
 ];
