@@ -49,6 +49,6 @@ func postRule(c *gin.Context) {
 	fmt.Printf("postRule:%+v\n",&recvJson)
 
 	c.JSON(http.StatusOK, gin.H{
-		"status": "ok"
+		"status": "ok",
 	})
 }
