@@ -1,5 +1,9 @@
 package model
 
+import (
+    "time"
+)
+
 type AccountLogin struct {
     Name   string `json:"name"`
     Passwd string `json:"password"`
