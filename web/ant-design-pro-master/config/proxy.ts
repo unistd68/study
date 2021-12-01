@@ -12,7 +12,7 @@ export default {
     '/api/': {
       // 要代理的地址
       // target: 'https://preview.pro.ant.design',
-      target: 'https://192.168.1.113:8888/api/',
+      target: 'http://192.168.1.113:8888/api/',
       // 配置了这个可以从 http 代理到 https
       // 依赖 origin 的功能可能需要这个，比如 cookie
       changeOrigin: true,
