@@ -14,24 +14,18 @@
 	"github.com/gin-gonic/gin"
 	"encoding/json"
 	"net/http"
-	"path"
-	"io/ioutil"
-	"path/filepath"
-	"strings"
+	// "path"
+	// "io/ioutil"
+	// "path/filepath"
+	// "strings"
 
 	model "https_gin/app/model"
-	dbmysql "https_gin/app/mysql"
+	// dbmysql "https_gin/app/mysql"
  )
 
-
- func getRuleTest(){
-	 str := "{\"data\":[{\"key\":99,\"disabled\":false,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png\",\"name\":\"TradeCode 99\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":716,\"status\":\"0\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":78},{\"key\":98,\"disabled\":false,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png\",\"name\":\"TradeCode 98\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":945,\"status\":\"0\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":37},{\"key\":97,\"disabled\":false,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png\",\"name\":\"TradeCode 97\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":69,\"status\":\"2\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":21},{\"key\":96,\"disabled\":true,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png\",\"name\":\"TradeCode 96\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":80,\"status\":\"0\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":28},{\"key\":95,\"disabled\":false,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png\",\"name\":\"TradeCode 95\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":686,\"status\":\"1\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":35},{\"key\":94,\"disabled\":false,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png\",\"name\":\"TradeCode 94\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":910,\"status\":\"0\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":100},{\"key\":93,\"disabled\":false,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png\",\"name\":\"TradeCode 93\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":858,\"status\":\"0\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":61},{\"key\":92,\"disabled\":false,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png\",\"name\":\"TradeCode 92\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":713,\"status\":\"1\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":39},{\"key\":91,\"disabled\":false,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png\",\"name\":\"TradeCode 91\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":180,\"status\":\"3\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":33},{\"key\":90,\"disabled\":true,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png\",\"name\":\"TradeCode 90\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":826,\"status\":\"3\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":75}],\"total\":100,\"success\":true,\"pageSize\":10,\"current\":1}"
-	return str
-}
-
-
 func getRule(c *gin.Context) {
-	str := getRuleTest()
+	// str := getRuleTest()
+	str := "{\"data\":[{\"key\":99,\"disabled\":false,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png\",\"name\":\"TradeCode 99\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":716,\"status\":\"0\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":78},{\"key\":98,\"disabled\":false,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png\",\"name\":\"TradeCode 98\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":945,\"status\":\"0\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":37},{\"key\":97,\"disabled\":false,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png\",\"name\":\"TradeCode 97\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":69,\"status\":\"2\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":21},{\"key\":96,\"disabled\":true,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png\",\"name\":\"TradeCode 96\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":80,\"status\":\"0\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":28},{\"key\":95,\"disabled\":false,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png\",\"name\":\"TradeCode 95\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":686,\"status\":\"1\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":35},{\"key\":94,\"disabled\":false,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png\",\"name\":\"TradeCode 94\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":910,\"status\":\"0\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":100},{\"key\":93,\"disabled\":false,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png\",\"name\":\"TradeCode 93\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":858,\"status\":\"0\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":61},{\"key\":92,\"disabled\":false,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png\",\"name\":\"TradeCode 92\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":713,\"status\":\"1\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":39},{\"key\":91,\"disabled\":false,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png\",\"name\":\"TradeCode 91\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":180,\"status\":\"3\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":33},{\"key\":90,\"disabled\":true,\"href\":\"https://ant.design\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png\",\"name\":\"TradeCode 90\",\"owner\":\"曲丽丽\",\"desc\":\"这是一段描述\",\"callNo\":826,\"status\":\"3\",\"updatedAt\":\"2021-12-01T10:17:31.353Z\",\"createdAt\":\"2021-12-01T10:17:31.353Z\",\"progress\":75}],\"total\":100,\"success\":true,\"pageSize\":10,\"current\":1}"
 	byteStr:=[]byte(string(str))
 	var menus model.MenutsResp
 	err := json.Unmarshal(byteStr,&menus)
@@ -39,7 +33,7 @@ func getRule(c *gin.Context) {
         fmt.Println(err)
     }
 	
-	fmt.Printf("getRule: %+v\n",&videos)
+	fmt.Printf("getRule: %+v\n",&menus)
 	c.JSON(http.StatusOK,menus)
 }
 
