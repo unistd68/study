@@ -18,6 +18,7 @@
 	e.POST("/api/login/account", userLogin)
 	e.GET("/api/currentUser", currentUser)
 	e.GET("/api/notices", userNotices)
+	e.POST("/api/outLogin", outLogin)
 	e.GET("/testdb", testdb)
 	e.GET("/testjson", testjson)
 }

@@ -86,6 +86,11 @@ type NoticeResp struct {
     Data []NoticeIconItem `json:"data"`
 }
 
+type OutLoginResp struct {
+    Data    struct `json:"data"`
+    Success   bool `json:"success"`
+}
+
 type DBAuthInfo struct {
     DBName  string
     DBHost  string
@@ -140,3 +145,4 @@ type VideoAddr struct {
     Title   string `json:"title"`
     Url   string `json:"url"`
 }
+
