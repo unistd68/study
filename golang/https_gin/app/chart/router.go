@@ -15,8 +15,8 @@
 
 
  func Routers(e *gin.Engine) {
-	e.GET("/api/fake_workplace_chart_data", getChartData)
-	e.GET("/api/fake_analysis_chart_data/", getAnalysistData)
+	e.GET("/api/fake_workplace_chart_data", getWorkChartData)
+	e.GET("/api/fake_analysis_chart_data/", getAnalysisChartData)
 	e.GET("/api/activities", getActivities)
 	e.GET("/api/project/notice", getProNotices)
 }
