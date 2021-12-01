@@ -189,8 +189,57 @@ type VideoAddr struct {
     Url   string `json:"url"`
 }
 
+type WorkCharkData struct {
+	Data struct {
+		VisitData []struct {
+			X string `json:"x"`
+			Y int    `json:"y"`
+		} `json:"visitData"`
+		VisitData2 []struct {
+			X string `json:"x"`
+			Y int    `json:"y"`
+		} `json:"visitData2"`
+		SalesData []struct {
+			X string `json:"x"`
+			Y int    `json:"y"`
+		} `json:"salesData"`
+		SearchData []struct {
+			Index   int    `json:"index"`
+			Keyword string `json:"keyword"`
+			Count   int    `json:"count"`
+			Range   int    `json:"range"`
+			Status  int    `json:"status"`
+		} `json:"searchData"`
+		OfflineData []struct {
+			Name string  `json:"name"`
+			Cvr  float64 `json:"cvr"`
+		} `json:"offlineData"`
+		OfflineChartData []struct {
+			X  int64 `json:"x"`
+			Y1 int   `json:"y1"`
+			Y2 int   `json:"y2"`
+		} `json:"offlineChartData"`
+		SalesTypeData []struct {
+			X string `json:"x"`
+			Y int    `json:"y"`
+		} `json:"salesTypeData"`
+		SalesTypeDataOnline []struct {
+			X string `json:"x"`
+			Y int    `json:"y"`
+		} `json:"salesTypeDataOnline"`
+		SalesTypeDataOffline []struct {
+			X string `json:"x"`
+			Y int    `json:"y"`
+		} `json:"salesTypeDataOffline"`
+		RadarData []struct {
+			Name  string `json:"name"`
+			Label string `json:"label"`
+			Value int    `json:"value"`
+		} `json:"radarData"`
+	} `json:"data"`
+}
 
-type CharData struct {
+type AnalysisData struct {
 	Data struct {
 		VisitData []struct {
 			X string `json:"x"`
