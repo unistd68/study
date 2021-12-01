@@ -22,7 +22,7 @@
 func userLogin(c *gin.Context) {
 	loginJson := model.AccountLogin{}
 	c.BindJSON(&loginJson)
-	fmt.Printt("userLogin:%+v\n",&loginJson)
+	fmt.Printf("userLogin:%+v\n",&loginJson)
 	
 	if loginJson.Passwd == "admin" {
 		c.JSON(http.StatusOK, gin.H{
