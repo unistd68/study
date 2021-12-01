@@ -15,11 +15,12 @@ routers "https_gin/routers"
 video "https_gin/app/video"
 audio "https_gin/app/audio"
 menu "https_gin/app/menu"
+chart "https_gin/app/chart"
 )
 
 func main() {
 	// 加载多个APP的路由配置
-	routers.Include( user.Routers,video.Routers,audio.Routers,menu.Routers)
+	routers.Include( user.Routers,video.Routers,audio.Routers,menu.Routers,chart.Routers)
 	// 初始化路由
 	r := routers.Init()
 	if err := r.Run(":8888"); err != nil {
