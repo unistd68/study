@@ -61,14 +61,10 @@
     // layout: false,
     routes: [
       {
-        path: '/audio',
-        routes: [
-          {
             name: 'play',
             path: '/audio/lay',
             component: './audio/Play',
-          },
-        ],
+          
       },
       {
         component: './404',
@@ -81,14 +77,11 @@
     // layout: false,
     routes: [
       {
-        path: '/video',
-        routes: [
-          {
+
             name: 'play',
             path: '/video/play',
             component: './video/Play',
-          },
-        ],
+
       },
       {
         component: './404',
