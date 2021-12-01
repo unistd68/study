@@ -189,7 +189,7 @@ type VideoAddr struct {
     Url   string `json:"url"`
 }
 
-type WorkCharkData struct {
+type WorkChartData struct {
 	Data struct {
 		VisitData []struct {
 			X string `json:"x"`
@@ -239,7 +239,7 @@ type WorkCharkData struct {
 	} `json:"data"`
 }
 
-type AnalysisData struct {
+type AnalysisChartData struct {
 	Data struct {
 		VisitData []struct {
 			X string `json:"x"`

@@ -32,7 +32,7 @@ func getWorkChartData(c *gin.Context) {
         fmt.Println(err)
     }
 	
-	fmt.Printf("WorkChartData: %+v\n",&chart)
+	fmt.Printf("WorkChartData: %+v\n",chart)
 	c.JSON(http.StatusOK,chart)
 }
 
@@ -45,7 +45,7 @@ func getAnalysisChartData(c *gin.Context) {
         fmt.Println(err)
     }
 	
-	fmt.Printf("AnalysisChartData: %+v\n",&chart)
+	fmt.Printf("AnalysisChartData: %+v\n",chart)
 	c.JSON(http.StatusOK,chart)
 }
 
@@ -59,7 +59,7 @@ func getActivities(c *gin.Context) {
         fmt.Println(err)
     }
 	
-	fmt.Printf("getActivities: %+v\n",&activities)
+	fmt.Printf("getActivities: %+v\n",activities)
 	c.JSON(http.StatusOK,activities)
 }
 
@@ -72,6 +72,6 @@ func getProNotices(c *gin.Context) {
         fmt.Println(err)
     }
 	
-	fmt.Printf("getProNotices: %+v\n",&notices)
+	fmt.Printf("getProNotices: %+v\n",notices)
 	c.JSON(http.StatusOK,notices)
 }
