@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-11-01 10:17:18
- * @LastEditTime: 2021-11-01 11:42:07
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-01-19 02:17:58
+ * @LastEditors: Ace
  * @Description: In User Settings Edit
  * @FilePath: \dubbo-goe:\other\vshare\test\includes.h
  */
@@ -34,5 +34,27 @@ extern "C"
 #include <chrono>
 #include <sstream>
 #include <vector>
+
+#include <mcheck.h>
+#include <thread>
+#include <memory>
+#include <queue>
+#include <functional>
+#include <future>
+
+
+enum CallType
+{
+    NAME,
+    AGE,
+    GRADE,
+};
+
+struct StCallBackMsg
+{
+	CallType _enCalltype;
+	std::string _strSeq;
+	std::string _strData;
+};
 
 #endif

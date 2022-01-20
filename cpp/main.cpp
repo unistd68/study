@@ -3,6 +3,10 @@
 #include "tools.h"
 #include "string_test.h"
 #include "dp.h"
+#include "BaseCall.hpp"
+#include "std_bind.hpp"
+#include "std_mem_fn.hpp"
+#include "std_function.hpp"
 
 void test_uuid()
 {
@@ -201,6 +205,21 @@ void test_dp(char *in)
 	testCakePrice(N);
 }
 
+void test_callback()
+{
+    std::thread t([]() {
+        BaseCall bc;
+        while(1){
+            //处理业务
+            std::this_thread::sleep_for(std::chrono::seconds(5)); // sleep一下，假装很耗时
+            //触发异步回调
+            bc.TestCallBack();
+        }
+    });
+    t.join();
+}
+
+
 void show_help()
 {
 	printf("####################################################\n");
@@ -212,6 +231,7 @@ void show_help()
 	printf("#### 4.  ./test 4 key string :使用sm4的ecb模式,以pkcs7填充的加密密文\n");
 	printf("#### 5.  ./test 5 key string :使用sm4的ecb模式,以pkcs7填充的解密明文\n");
 	printf("#### 6.  ./test 6 data : 动态规划测试\n");
+	printf("#### 7.  ./test 7  : 回调测试\n");
 	printf("####################################################\n");
 }
 
@@ -252,6 +272,12 @@ void do_something(int argc, char *argv[])
 		printf("################# 动态规划算法测试 开始 ############################ \n");
 		test_dp(argv[2]);
 		printf("################# 动态规划算法测试 结束 ############################ \n");
+	}
+	else if (argc == 2 && strcmp(argv[1], "7") == 0)
+	{
+		printf("################# 回调测试 开始 ############################ \n");
+		test_callback();
+		printf("################# 回调测试 结束 ############################ \n");
 	}
 	else
 	{
